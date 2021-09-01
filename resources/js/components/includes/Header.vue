@@ -1,7 +1,7 @@
 <template>
     <header class='flex justify-start items-center bg-white'>
         <router-link :to="{name : 'home'}" class='logo mr-1' tag='div'><IconLogo /></router-link>
-        <router-link :to="{name : 'single-currency', params : {slug : 'btc'}}">Single</router-link>
+        <!-- <router-link :to="{name : 'single-currency', params : {id : 'btc'}}">Single</router-link> -->
     </header>
 </template>
 

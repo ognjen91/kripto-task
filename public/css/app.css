@@ -31906,7 +31906,11 @@ main {
 }
 
 .home table tr {
-  padding: 9px 24px;
+  height: 80px;
+}
+
+.home table tr td {
+  height: 80px;
 }
 
 .home table .logo-and-name img {
@@ -31923,10 +31927,6 @@ main {
 
 .home table td.seven-days-chart {
   width: 120px;
-}
-
-.home table td.seven-days-chart svg {
-  width: 92px;
 }
 
 .home table td.seven-days-chart .apexcharts-xaxis-tick {

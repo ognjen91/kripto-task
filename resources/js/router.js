@@ -13,7 +13,7 @@ const router = createRouter({
       component: Home
     },
     {
-      path: '/currency/:slug',
+      path: '/currency/:id',
       name: 'single-currency',
       component: SingleCurrency
     },

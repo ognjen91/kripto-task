@@ -11,7 +11,7 @@
                 <table class="w-full bg-white" v-if="coins.length">
                 <thead class='text-right'>
                     <tr>
-                        <th>Currency</th>
+                        <th class='text-left'>Currency</th>
                         <th>Price</th>
                         <th>Change 24h</th>
                         <th>Market cap</th>

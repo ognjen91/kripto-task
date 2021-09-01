@@ -2,11 +2,11 @@
         <apexchart 
         v-if="series[0]['data'].length"
         type="line" 
-        height="100px" 
         :options="chartOptions" 
         :series="series"
         >
         </apexchart>
+        <!-- height="32px"  -->
 </template>
 <script>
 import VueApexCharts from "vue3-apexcharts"
@@ -35,10 +35,10 @@ export default {
           chartOptions: {
               chart: {
               width: '92px',
+              height: '32px',
               toolbar: {
                     show: false,
               },            
-              height: '100%',
               type: 'line',
               zoom: {
                 enabled: false

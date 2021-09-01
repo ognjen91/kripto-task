@@ -12,7 +12,11 @@ main{
 .home 
 table
 tr{
-    padding: 9px 24px;
+   height: 80px;
+   
+   & td{
+       height: 80px;
+   }
 }
 
 .home 
@@ -38,9 +42,6 @@ td{
 table
 td.seven-days-chart {
     width: 120px;
-    & svg{
-        width: 92px;
-    }
 }
 
 

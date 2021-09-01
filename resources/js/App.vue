@@ -1,7 +1,7 @@
 <template>
     <div>
         <Header />
-            <main class='flex justify-center'>
+            <main class='container'>
                 <router-view></router-view>
             </main>
         <Footer />
