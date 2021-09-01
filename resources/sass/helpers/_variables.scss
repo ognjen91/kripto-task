@@ -1,0 +1,23 @@
+/* ----------------------------------------------------------------
+	Breakpoints - vars
+-----------------------------------------------------------------*/
+$screen-sm-min: 640px; 
+$screen-lg-min: 1024px; 
+
+/* ----------------------------------------------------------------
+	Breakpoints - mixins
+-----------------------------------------------------------------*/
+@mixin screen-sm {
+    @media screen and (min-width: #{$screen-sm-min}) {
+        @content;
+    }
+}
+@mixin screen-lg {
+    @media screen and (min-width: #{$screen-lg-min}) {
+        @content;
+    }
+}
+
+// @include screen-sm {
+//     foo : bar;
+// }

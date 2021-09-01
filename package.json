@@ -11,13 +11,15 @@
     },
     "devDependencies": {
         "@vue/compiler-sfc": "^3.2.6",
+        "autoprefixer": "^10.3.3",
         "axios": "^0.21",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
-        "postcss": "^8.1.14",
+        "postcss": "^8.3.6",
         "resolve-url-loader": "^4.0.0",
         "sass": "^1.38.2",
         "sass-loader": "^12.1.0",
+        "tailwindcss": "^2.2.9",
         "vue-loader": "^16.5.0"
     },
     "dependencies": {

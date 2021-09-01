@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '@/components/pages/Home.vue'
-import Single from '@/components/pages/Single.vue'
+import SingleCurrency from '@/components/pages/SingleCurrency.vue'
 
 const routerHistory = createWebHistory()
 
@@ -13,9 +13,9 @@ const router = createRouter({
       component: Home
     },
     {
-      path: '/single/:slug',
-      name: 'single',
-      component: Single
+      path: '/currency/:slug',
+      name: 'single-currency',
+      component: SingleCurrency
     },
   ]
 })
