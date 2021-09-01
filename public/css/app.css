@@ -31887,9 +31887,50 @@ video {
 	Breakpoints - mixins
 -----------------------------------------------------------------*/
 
+header {
+  height: 88px;
+}
+
 header .logo {
   display: flex;
   width: 20vw;
+}
+
+main {
+  background-color: #F8F8F8;
+  padding: 40px 146px;
+}
+
+.home h1 {
+  font-size: 40px;
+}
+
+.home table tr {
+  padding: 9px 24px;
+}
+
+.home table .logo-and-name img {
+  width: 40px;
+}
+
+.home table tr {
+  border-bottom: 1px solid #F8F8F8;
+}
+
+.home table td {
+  vertical-align: center;
+}
+
+.home table td.seven-days-chart {
+  width: 120px;
+}
+
+.home table td.seven-days-chart svg {
+  width: 92px;
+}
+
+.home table td.seven-days-chart .apexcharts-xaxis-tick {
+  display: none;
 }
 
 @media (min-width: 640px) {
