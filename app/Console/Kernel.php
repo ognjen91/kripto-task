@@ -24,7 +24,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->command('coins:get')->everyMinute();
+        $schedule->command('coins:compare-prices-and-delete-old-records')->everyMinute();
     }
 
     /**

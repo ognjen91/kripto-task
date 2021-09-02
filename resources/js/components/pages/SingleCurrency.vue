@@ -70,6 +70,8 @@ export default {
     },
 
     async mounted(){
+        
+
         let coinId = this.$route.params.id
 
         const basicData = await axios.get(

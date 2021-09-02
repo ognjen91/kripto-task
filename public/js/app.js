@@ -19944,21 +19944,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     var _this = this;
 
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-      var coinId, basicData;
+      var foo, coinId, basicData;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
+              foo = new WebSocket("wss://api.coingecko.com/api/v3/coins/bitcoin/status_updates?per_page=5&page=1"); // let foo = new WebSocket("wss://echo.websocket.org")
+              // let foo = new WebSocket('https://api.coingecko.com/api/v3/coins/bitcoin')
+
+              console.log(foo);
               coinId = _this.$route.params.id;
-              _context.next = 3;
+              _context.next = 5;
               return axios.get("https://api.coingecko.com/api/v3/coins/".concat(coinId));
 
-            case 3:
+            case 5:
               basicData = _context.sent;
               // const data = basicData.data;
               _this.coin = basicData.data; // console.log(data)
 
-            case 5:
+            case 7:
             case "end":
               return _context.stop();
           }
