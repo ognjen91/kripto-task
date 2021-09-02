@@ -5,7 +5,9 @@ require('./bootstrap');
 
 import { createApp } from 'vue'
 import router from '@/router'
+import { store } from './store'
 import App from '@/App.vue'
+
 
 // Reusable components
 import IconBase from '@/components/includes/icons/IconBase.vue'
@@ -17,6 +19,7 @@ app.component('icon-base', IconBase)
 
 
 app.use(router)
+app.use(store)
 app.mount('#app')
 
 
@@ -36,3 +39,4 @@ Echo.private('coin-price-changed')
 .listen('CoinPriceChanged', (e) => {
     console.log(`${e.coinId} ${e.previousPrice} ${e.currentPrice}`)
 });
+

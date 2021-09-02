@@ -15,6 +15,16 @@ export default {
     components : {
         Header,
         Footer
+    },
+
+    data(){
+        return {
+            perPage : 2
+        }
+    },
+
+    async created(){
+        this.$store.dispatch('coins/setCoinsData', {perPage : this.perPage})
     }
 }
 </script>
