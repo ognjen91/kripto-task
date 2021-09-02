@@ -22,6 +22,8 @@ class CreateCoinPriceAlertsTable extends Migration
             $table->unsignedFloat('price');
             $table->integer('percentage_range');
 
+            $table->text('note')->nullable();
+
             $table->timestamps();
         });
     }

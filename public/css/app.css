@@ -32163,6 +32163,95 @@ header .logo {
   width: 20vw;
 }
 
+.full-size-dark-wrap {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 11;
+  top: 0;
+  left: 0;
+}
+
+.create-coin-price-alert-wrap .create-coin-price-alert {
+  width: 41.67%;
+  max-width: 600px;
+  height: 553px;
+  padding: 33px;
+}
+
+.create-coin-price-alert-wrap .create-coin-price-alert .select-wrap .options {
+  max-height: 300px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  z-index: 4;
+}
+
+.create-coin-price-alert-wrap .create-coin-price-alert .option {
+  padding: 11px 16px;
+}
+
+.create-coin-price-alert-wrap .create-coin-price-alert .option img {
+  width: 24px;
+  height: 24px;
+}
+
+.create-coin-price-alert-wrap .create-coin-price-alert .show-dropdown svg.active {
+  transform: rotate(180deg);
+}
+
+.create-coin-price-alert-wrap .create-coin-price-alert .notify-value-wrap {
+  max-width: 321px;
+}
+
+.create-coin-price-alert-wrap .create-coin-price-alert .percentage-range-wrap {
+  max-width: 190px;
+}
+
+.number-input-wrap {
+  /* Firefox */
+}
+
+.number-input-wrap input::-webkit-outer-spin-button, .number-input-wrap input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.number-input-wrap input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.create-coin-price-alert-wrap .create-coin-price-alert .currency, .create-coin-price-alert-wrap .create-coin-price-alert .percentage {
+  width: 44px;
+}
+
+.slider-wrap .slider .slider__range {
+  height: 8px;
+  background-color: #F5F5F5;
+}
+
+.slider-wrap .slider .slider__range.plus.active {
+  background-color: #33CC00;
+}
+
+.slider-wrap .slider .slider__range.minus.active {
+  background-color: #E50915;
+}
+
+.slider-wrap .slider .tooltip {
+  bottom: calc(100% + 4px);
+  -webkit-clip-path: polygon(100% 0, 100% 66%, 49% 100%, 0 65%, 0 0);
+          clip-path: polygon(100% 0, 100% 66%, 49% 100%, 0 65%, 0 0);
+  width: 40px;
+  height: 31px;
+  font-size: 12px;
+  line-height: 14px;
+  background-color: #33CC00;
+}
+
+.slider-wrap .slider .tooltip.minus {
+  background-color: #E50915;
+}
+
 main {
   background-color: #F8F8F8;
   padding: 40px 146px;

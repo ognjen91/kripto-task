@@ -22,7 +22,7 @@ export default {
   actions: {
     async setCoinsData (context, payload) {
 
-      axios.get(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&&?order=market_cap_asc&&per_page=${payload.perPage}&&page=1`)
+      axios.get(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&&?order=market_cap_asc&&per_page=${payload.perPage}&&page=1`)
         .then(function ({data}) {
           context.commit('SET_ALL_COINS', data)
         })

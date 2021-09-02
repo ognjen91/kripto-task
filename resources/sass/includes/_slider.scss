@@ -1,0 +1,31 @@
+.slider-wrap
+.slider
+.slider__range{
+    height: 8px;
+    background-color: #F5F5F5;
+    
+    &.plus.active{
+        background-color: #33CC00;
+    }
+    
+    &.minus.active{
+        background-color: #E50915;
+    }
+}
+
+.slider-wrap
+.slider
+.tooltip{
+    bottom : calc(100% + 4px);
+    clip-path: polygon(100% 0, 100% 66%, 49% 100%, 0 65%, 0 0);
+    width: 40px;
+    height: 31px;
+    font-size: 12px;
+    line-height: 14px;
+    background-color: #33CC00;
+    
+    &.minus{
+        background-color: #E50915;
+    }
+
+}
