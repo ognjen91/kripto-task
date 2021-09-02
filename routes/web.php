@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CurrencyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +13,12 @@ use App\Http\Controllers\CurrencyController;
 |
 */
 
-Route::get('/', [CurrencyController::class, 'index']);
-Route::get('/currency/{slug}', [CurrencyController::class, 'show']);
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';

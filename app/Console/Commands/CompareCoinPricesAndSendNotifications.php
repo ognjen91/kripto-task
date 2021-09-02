@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Models\CoinPriceHistory;
+use App\Events\CoinPriceChanged;
 
 class CompareCoinPricesAndSendNotifications extends Command
 {
@@ -53,10 +54,10 @@ class CompareCoinPricesAndSendNotifications extends Command
                 $previousRecord = $records[0];
                 $currentRecord = $records[1];
                 if($previousRecord->price !== $currentRecord->price){
-
-                    //finaly, delete previous record
-                    // $previousRecord->delete();
+                    broadcast(new CoinPriceChanged($previousRecord, $currentRecord));
                 } 
+                //finaly, delete previous record
+                $previousRecord->delete();
 
             }
         });

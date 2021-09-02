@@ -31,7 +31,10 @@ class DatabaseSeeder extends Seeder
                 'coin_id' => $coin
             ]);
         }
-        // \App\Models\User::factory(10)->create();
-
+        \App\Models\User::factory()->create([
+            'name' => 'Ognjen',
+            'email' => 'qzman16@gmail.com',
+            'password' => \bcrypt('123456')
+        ]);
     }
 }
