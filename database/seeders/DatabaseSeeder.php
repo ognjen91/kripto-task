@@ -3,7 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\User;
 use App\Models\CoinPriceHistory;
+use App\Models\CoinPriceAlert;
 
 class DatabaseSeeder extends Seeder
 {
@@ -31,10 +33,13 @@ class DatabaseSeeder extends Seeder
                 'coin_id' => $coin
             ]);
         }
-        \App\Models\User::factory()->create([
+
+        User::factory()->create([
             'name' => 'Ognjen',
             'email' => 'qzman16@gmail.com',
             'password' => \bcrypt('123456')
         ]);
+
+        CoinPriceAlert::factory(5)->create();
     }
 }

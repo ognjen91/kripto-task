@@ -18,5 +18,6 @@ Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
 });
 
 Broadcast::channel('coin-price-changed', function ($user) {
-    return Auth::check();
+    if(!auth()->check()) return false;
+    return true;
 });

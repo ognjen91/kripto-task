@@ -40,7 +40,7 @@ export default {
         // console.log(currentTimestamp, sevenDaysAgoTimestamp)
 
         const basicData = await axios.get(
-        `https://api.coingecko.com/api/v3/coins/${this.coin.id}/market_chart/range?vs_currency=eur&from=${sevenDaysAgoTimestamp}&to=${currentTimestamp}`
+         `https://api.coingecko.com/api/v3/coins/${this.coin.id}/market_chart/range?vs_currency=eur&from=${sevenDaysAgoTimestamp}&to=${currentTimestamp}`
         );
         this.lastWeekChanges = [...basicData.data.prices]
 

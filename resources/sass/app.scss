@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+html{
+    font-size: 100%;
+
+    @media screen and (min-width: 1920px){
+        font-size: 112.5%; // 12.5% greater than 16px (=18px)
+    }
+}
+
 @import 'helpers/variables';
 
 @import 'includes/header';

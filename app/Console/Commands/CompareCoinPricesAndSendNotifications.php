@@ -58,7 +58,6 @@ class CompareCoinPricesAndSendNotifications extends Command
                 } 
                 //finaly, delete previous record
                 $previousRecord->delete();
-
             }
         });
         // dd($coins); 

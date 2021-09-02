@@ -13,8 +13,9 @@
 
     </div>
 
-    <!-- BASIC NUMERIC DATA -->
+    <!-- NUMERIC DATA WITH CHART-->
     <div class="row flex flex-wrap bg-white" v-if="coin">
+    <!-- 1) BASIC NUMERIC DATA -->
         <div class="w-1/6 flex flex-col">
             <p>{{coin.name}} Price</p>
             <h3>{{coin.market_data.current_price.eur}} EUR</h3>
@@ -24,14 +25,25 @@
             <p>{{formatedPriceChange}}</p>
         </div>
 
+        <!-- 2) TIME RANGE SELECTION -->
         <div class="w-2/3 flex justify-end">
             <TimeRangeSelect
             @timeRangeSelected='setTimeRange'
              />
         </div>
 
+        <!-- 3) PRICE CHART FOR THE SEECTED RANGE -->
         <div class="w-full pt-5">
             <PriceChangeChartFull :time-range="selectedTimeRange" />
+        </div>
+    </div>
+
+
+    <div class="row flex flex-wrap pt-5">
+        <div class="col-12 w-full">
+            <h2 class='w-full inline-flex justify-between'>Price Alerts <span>New Price Alert</span></h2>
+
+            <CoinPriceAlertTable :users-coin-price-alerts="usersCoinPriceAlerts" />
         </div>
     </div>
 
@@ -40,10 +52,12 @@
 <script>
 import TimeRangeSelect from '@/components/includes/TimeRangeSelect'
 import PriceChangeChartFull from '@/components/includes/PriceChangeChartFull'
+import CoinPriceAlertTable from '@/components/includes/CoinPriceAlertTable'
 export default {
     components : {
         TimeRangeSelect,
-        PriceChangeChartFull
+        PriceChangeChartFull,
+        CoinPriceAlertTable
     },
 
     data(){
@@ -51,6 +65,7 @@ export default {
             coin : null,
             chartData : {},
             selectedTimeRange : '24h',
+            usersCoinPriceAlerts : []
         }
     },
 
@@ -70,17 +85,31 @@ export default {
     },
 
     async mounted(){
-        
+
 
         let coinId = this.$route.params.id
 
         const basicData = await axios.get(
-        `https://api.coingecko.com/api/v3/coins/${coinId}`
+            `https://api.coingecko.com/api/v3/coins/${coinId}`
         );
         // const data = basicData.data;
         this.coin = basicData.data
         // console.log(data)
 
+        // GET COIN PRICE ALERTS FOR THE USER
+        axios.get(`/api/user/alerts/${coinId}`)
+        // axios.get(`/api/user`)
+        .then(({data}) => {
+            // handle success
+            this.usersCoinPriceAlerts = [...data.coinPriceAlerts]
+        })
+        .catch(function (error) {
+            // handle error
+            console.log(error);
+        })
+        .then(function () {
+            // always executed
+        });
 
     }
 }

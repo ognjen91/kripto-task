@@ -41,4 +41,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    /**
+     * RELATIONSHIPS
+     */
+
+     public function coinPriceAlerts(){
+         return $this->hasMany(CoinPriceAlert::class)->orderBy('created_at', 'DESC');
+     }
+
+
+
 }
