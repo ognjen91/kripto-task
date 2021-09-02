@@ -21402,118 +21402,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/includes/CreateNewCoinPriceAlert.vue?vue&type=script&lang=js":
-/*!**************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/includes/CreateNewCoinPriceAlert.vue?vue&type=script&lang=js ***!
-  \**************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components_includes_icons_IconChevron__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/includes/icons/IconChevron */ "./resources/js/components/includes/icons/IconChevron.vue");
-/* harmony import */ var _components_includes_SelectCoin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/includes/SelectCoin */ "./resources/js/components/includes/SelectCoin.vue");
-/* harmony import */ var _components_includes_Slider__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components/includes/Slider */ "./resources/js/components/includes/Slider.vue");
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  components: {
-    IconChevron: _components_includes_icons_IconChevron__WEBPACK_IMPORTED_MODULE_1__.default,
-    SelectCoin: _components_includes_SelectCoin__WEBPACK_IMPORTED_MODULE_2__.default,
-    Slider: _components_includes_Slider__WEBPACK_IMPORTED_MODULE_3__.default
-  },
-  props: {
-    show: {
-      Type: Boolean,
-      required: true
-    },
-    initialySelected: {
-      Type: String,
-      required: true
-    }
-  },
-  data: function data() {
-    return {
-      selectedCoin: null,
-      targetPrice: 100,
-      percentageRange: 0,
-      note: ''
-    };
-  },
-  computed: {
-    coins: function coins() {
-      return this.$store.getters['coins/allCoins'];
-    }
-  },
-  methods: {
-    setSelectedCoin: function setSelectedCoin(coin) {
-      this.selectedCoin = coin;
-    },
-    setPercentageRangeValue: function setPercentageRangeValue(val) {
-      this.percentageRange = val;
-    },
-    submit: function submit() {
-      var _this = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _context.next = 2;
-                return _this.$store.dispatch('coins/addNewAlert', {
-                  coinId: _this.selectedCoin.id,
-                  priceOnSetDate: _this.selectedCoin.current_price,
-                  targetPrice: _this.targetPrice,
-                  percentageRange: _this.percentageRange,
-                  note: _this.note
-                });
-
-              case 2:
-                _this.$emit('close');
-
-              case 3:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }))();
-    }
-  },
-  watch: {
-    show: function show(newVal) {
-      var _this2 = this;
-
-      this.selectedCoin = this.coins.find(function (coin) {
-        return coin.id == _this2.initialySelected;
-      });
-    },
-    selectedCoin: {
-      handler: function handler(val, oldVal) {
-        this.targetPrice = val.current_price + 10;
-      },
-      deep: true
-    },
-    targetPrice: function targetPrice(newVal, oldVal) {
-      if (!/^-?[\d.]+(?:e-?\d+)?$/.test(newVal)) this.targetPrice = oldVal; //if new value is number, take back the old value!
-    }
-  }
-});
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/includes/Header.vue?vue&type=script&lang=js":
 /*!*********************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/includes/Header.vue?vue&type=script&lang=js ***!
@@ -21949,13 +21837,12 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this2 = this;
 
-    this.selectedCoin = this.coins.find(function (coin) {
-      return coin.id == _this2.initialySelected;
-    }); // for dev...
-
     setTimeout(function () {
-      _this2.selectedCoin = _this2.coins[0];
-    }, 1000);
+      _this2.selectedCoin = _this2.$store.getters['coins/getTheCoin'](_this2.initialySelected);
+    }, 200); // for dev...
+    // setTimeout(()=>{
+    //     this.selectedCoin = this.coins[0]
+    // }, 1000)
   }
 });
 
@@ -22238,6 +22125,108 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/pages/CreateNewCoinPriceAlert.vue?vue&type=script&lang=js":
+/*!***********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/pages/CreateNewCoinPriceAlert.vue?vue&type=script&lang=js ***!
+  \***********************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_includes_icons_IconChevron__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/includes/icons/IconChevron */ "./resources/js/components/includes/icons/IconChevron.vue");
+/* harmony import */ var _components_includes_SelectCoin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/includes/SelectCoin */ "./resources/js/components/includes/SelectCoin.vue");
+/* harmony import */ var _components_includes_Slider__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components/includes/Slider */ "./resources/js/components/includes/Slider.vue");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {
+    IconChevron: _components_includes_icons_IconChevron__WEBPACK_IMPORTED_MODULE_1__.default,
+    SelectCoin: _components_includes_SelectCoin__WEBPACK_IMPORTED_MODULE_2__.default,
+    Slider: _components_includes_Slider__WEBPACK_IMPORTED_MODULE_3__.default
+  },
+  data: function data() {
+    return {
+      selectedCoin: null,
+      targetPrice: 100,
+      percentageRange: 0,
+      note: ''
+    };
+  },
+  computed: {
+    coins: function coins() {
+      return this.$store.getters['coins/allCoins'];
+    }
+  },
+  methods: {
+    setSelectedCoin: function setSelectedCoin(coin) {
+      this.selectedCoin = coin;
+    },
+    setPercentageRangeValue: function setPercentageRangeValue(val) {
+      this.percentageRange = val;
+    },
+    submit: function submit() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return _this.$store.dispatch('coins/addNewAlert', {
+                  coinId: _this.selectedCoin.id,
+                  priceOnSetDate: _this.selectedCoin.current_price,
+                  targetPrice: _this.targetPrice,
+                  percentageRange: _this.percentageRange,
+                  note: _this.note
+                });
+
+              case 2:
+                _this.$router.push({
+                  name: 'single-currency',
+                  params: {
+                    id: _this.$route.params.id
+                  }
+                });
+
+              case 3:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    }
+  },
+  watch: {
+    selectedCoin: {
+      handler: function handler(val, oldVal) {
+        this.targetPrice = val.current_price + 10;
+      },
+      deep: true
+    },
+    targetPrice: function targetPrice(newVal, oldVal) {
+      if (!/^-?[\d.]+(?:e-?\d+)?$/.test(newVal)) this.targetPrice = oldVal; //if new value is number, take back the old value!
+    }
+  },
+  mounted: function mounted() {// this.selectedCoin = this.$store.getters['coins/getTheCoin'](this.$route.params.id)
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/pages/Home.vue?vue&type=script&lang=js":
 /*!****************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/pages/Home.vue?vue&type=script&lang=js ***!
@@ -22286,7 +22275,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_includes_TimeRangeSelect__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/includes/TimeRangeSelect */ "./resources/js/components/includes/TimeRangeSelect.vue");
 /* harmony import */ var _components_includes_PriceChangeChartFull__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/includes/PriceChangeChartFull */ "./resources/js/components/includes/PriceChangeChartFull.vue");
 /* harmony import */ var _components_includes_CoinPriceAlertTable__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components/includes/CoinPriceAlertTable */ "./resources/js/components/includes/CoinPriceAlertTable.vue");
-/* harmony import */ var _components_includes_CreateNewCoinPriceAlert__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/components/includes/CreateNewCoinPriceAlert */ "./resources/js/components/includes/CreateNewCoinPriceAlert.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -22295,15 +22283,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
-
- // import CoinPriceAlertDetail from '@/components/includes/CoinPriceAlertDetail'
+ // import CreateNewCoinPriceAlert from '@/components/includes/CreateNewCoinPriceAlert'
+// import CoinPriceAlertDetail from '@/components/includes/CoinPriceAlertDetail'
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     TimeRangeSelect: _components_includes_TimeRangeSelect__WEBPACK_IMPORTED_MODULE_1__.default,
     PriceChangeChartFull: _components_includes_PriceChangeChartFull__WEBPACK_IMPORTED_MODULE_2__.default,
-    CoinPriceAlertTable: _components_includes_CoinPriceAlertTable__WEBPACK_IMPORTED_MODULE_3__.default,
-    CreateNewCoinPriceAlert: _components_includes_CreateNewCoinPriceAlert__WEBPACK_IMPORTED_MODULE_4__.default // CoinPriceAlertDetail
+    CoinPriceAlertTable: _components_includes_CoinPriceAlertTable__WEBPACK_IMPORTED_MODULE_3__.default // CreateNewCoinPriceAlert,
+    // CoinPriceAlertDetail
 
   },
   data: function data() {
@@ -22479,136 +22467,6 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     width: "70px",
     height: "70px"
   })])])]);
-}
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/includes/CreateNewCoinPriceAlert.vue?vue&type=template&id=1e6937e2":
-/*!******************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/includes/CreateNewCoinPriceAlert.vue?vue&type=template&id=1e6937e2 ***!
-  \******************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* binding */ render)
-/* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-
-var _hoisted_1 = {
-  key: 0,
-  "class": "full-size-dark-wrap create-coin-price-alert-wrap fixed flex justify-center items-center"
-};
-var _hoisted_2 = {
-  "class": "create-coin-price-alert floating-window bg-white flex flex-col"
-};
-
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Select Currency ");
-
-var _hoisted_4 = {
-  "class": "flex flex-col lg:flex-row flex-wrap  items-end w-full"
-};
-var _hoisted_5 = {
-  "class": "flex flex-col notify-value-wrap number-input-wrap"
-};
-
-var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Notify me when the price reaches", -1
-/* HOISTED */
-);
-
-var _hoisted_7 = {
-  "class": "flex  w-full"
-};
-
-var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "currency f-full flex items-center bg-gray"
-}, "EUR", -1
-/* HOISTED */
-);
-
-var _hoisted_9 = {
-  "class": "flex flex-col  percentage-range-wrap number-input-wrap"
-};
-var _hoisted_10 = {
-  "class": "flex  w-full"
-};
-
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "percentage f-full flex items-center bg-gray"
-}, "%", -1
-/* HOISTED */
-);
-
-var _hoisted_12 = {
-  "class": "slider-wrap w-full pt-5"
-};
-var _hoisted_13 = {
-  "class": "note-wrap flex flex-col"
-};
-
-var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Notify me when the price reaches", -1
-/* HOISTED */
-);
-
-function render(_ctx, _cache, $props, $setup, $data, $options) {
-  var _component_SelectCoin = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("SelectCoin");
-
-  var _component_Slider = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Slider");
-
-  return $props.show ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_SelectCoin, {
-    "class": "mb-3",
-    "initialy-selected": $props.initialySelected,
-    onCoinWasSelected: $options.setSelectedCoin
-  }, {
-    title: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_3];
-    }),
-    _: 1
-    /* STABLE */
-
-  }, 8
-  /* PROPS */
-  , ["initialy-selected", "onCoinWasSelected"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" PRICE "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-    type: "number",
-    "class": "notify-value",
-    min: "0",
-    "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
-      return $data.targetPrice = $event;
-    })
-  }, null, 512
-  /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.targetPrice]]), _hoisted_8])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" PERCENTAGE RANGE "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-    type: "number",
-    "class": "notify-value",
-    min: "0",
-    "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
-      return $data.percentageRange = $event;
-    })
-  }, null, 512
-  /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.percentageRange]]), _hoisted_11])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Slider, {
-    initialValue: $data.percentageRange,
-    min: -50,
-    max: 50,
-    "append-sign": "%",
-    onValueSelected: $options.setPercentageRangeValue
-  }, null, 8
-  /* PROPS */
-  , ["initialValue", "onValueSelected"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
-    "class": "w-full",
-    id: "",
-    "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
-      return $data.note = $event;
-    })
-  }, null, 512
-  /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.note]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    "class": "mt-3",
-    onClick: _cache[3] || (_cache[3] = function () {
-      return $options.submit && $options.submit.apply($options, arguments);
-    })
-  }, "Save alert")])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true);
 }
 
 /***/ }),
@@ -23477,6 +23335,165 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/pages/CreateNewCoinPriceAlert.vue?vue&type=template&id=47b69d02":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/pages/CreateNewCoinPriceAlert.vue?vue&type=template&id=47b69d02 ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+var _hoisted_1 = {
+  "class": "full-size-dark-wrap create-coin-price-alert-wrap fixed flex justify-center items-center"
+};
+var _hoisted_2 = {
+  "class": "create-coin-price-alert floating-window bg-white flex flex-col"
+};
+var _hoisted_3 = {
+  "class": "w-full"
+};
+
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+  "class": "w-full text-center"
+}, "New Price Alert", -1
+/* HOISTED */
+);
+
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Select Currency ");
+
+var _hoisted_6 = {
+  "class": "flex flex-col lg:flex-row flex-wrap  items-end w-full"
+};
+var _hoisted_7 = {
+  "class": "flex flex-col notify-value-wrap number-input-wrap"
+};
+
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Notify me when the price reaches", -1
+/* HOISTED */
+);
+
+var _hoisted_9 = {
+  "class": "flex  w-full"
+};
+
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "currency f-full flex items-center bg-gray"
+}, "EUR", -1
+/* HOISTED */
+);
+
+var _hoisted_11 = {
+  "class": "flex flex-col  percentage-range-wrap number-input-wrap"
+};
+var _hoisted_12 = {
+  "class": "flex  w-full"
+};
+
+var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "percentage f-full flex items-center bg-gray"
+}, "%", -1
+/* HOISTED */
+);
+
+var _hoisted_14 = {
+  "class": "slider-wrap w-full pt-5"
+};
+var _hoisted_15 = {
+  "class": "note-wrap flex flex-col"
+};
+
+var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Note", -1
+/* HOISTED */
+);
+
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  var _component_IconTimes = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("IconTimes");
+
+  var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
+
+  var _component_SelectCoin = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("SelectCoin");
+
+  var _component_Slider = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Slider");
+
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"full-size-dark-wrap create-coin-price-alert-wrap fixed flex justify-center items-center\" v-if='selectedCoin'> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+    to: {
+      name: 'single-currency',
+      params: {
+        id: _ctx.$route.params.id
+      }
+    },
+    "class": "absolute top-0 right-3"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_IconTimes)];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
+  /* PROPS */
+  , ["to"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_SelectCoin, {
+    "class": "mb-3",
+    "initialy-selected": _ctx.$route.params.id,
+    onCoinWasSelected: $options.setSelectedCoin
+  }, {
+    title: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_5];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
+  /* PROPS */
+  , ["initialy-selected", "onCoinWasSelected"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" PRICE "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    type: "number",
+    "class": "notify-value",
+    min: "0",
+    "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
+      return $data.targetPrice = $event;
+    })
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.targetPrice]]), _hoisted_10])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" PERCENTAGE RANGE "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    type: "number",
+    "class": "notify-value",
+    min: "0",
+    "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+      return $data.percentageRange = $event;
+    })
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.percentageRange]]), _hoisted_13])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Slider, {
+    initialValue: $data.percentageRange,
+    min: -50,
+    max: 50,
+    "append-sign": "%",
+    onValueSelected: $options.setPercentageRangeValue
+  }, null, 8
+  /* PROPS */
+  , ["initialValue", "onValueSelected"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [_hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
+    "class": "w-full",
+    id: "",
+    "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+      return $data.note = $event;
+    })
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.note]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    "class": "mt-3",
+    onClick: _cache[3] || (_cache[3] = function () {
+      return $options.submit && $options.submit.apply($options, arguments);
+    })
+  }, "Save alert")])]);
+}
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/pages/Home.vue?vue&type=template&id=a9aac016":
 /*!********************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/pages/Home.vue?vue&type=template&id=a9aac016 ***!
@@ -23605,16 +23622,18 @@ var _hoisted_15 = {
 
 var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Price Alerts ");
 
+var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("New Price Alert");
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_TimeRangeSelect = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("TimeRangeSelect");
 
   var _component_PriceChangeChartFull = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("PriceChangeChartFull");
 
+  var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
+
   var _component_CoinPriceAlertTable = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("CoinPriceAlertTable");
 
   var _component_router_view = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-view");
-
-  var _component_CreateNewCoinPriceAlert = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("CreateNewCoinPriceAlert");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [$data.coin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" BASIC DATA... NAME "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
     src: $data.coin.image.small,
@@ -23639,23 +23658,27 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "time-range": $data.selectedTimeRange
   }, null, 8
   /* PROPS */
-  , ["time-range"])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", _hoisted_15, [_hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-    onClick: _cache[0] || (_cache[0] = function ($event) {
-      return $data.showCreateNewCoinPriceAlertWindow = true;
-    })
-  }, "New Price Alert")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CoinPriceAlertTable, {
+  , ["time-range"])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", _hoisted_15, [_hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+    to: {
+      name: 'alert-create',
+      params: {
+        id: _ctx.$route.params.id
+      }
+    }
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_17];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
+  /* PROPS */
+  , ["to"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CoinPriceAlertTable, {
     "users-coin-price-alerts": $options.usersCoinPriceAlerts
   }, null, 8
   /* PROPS */
-  , ["users-coin-price-alerts"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" DETAILS "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_view), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" CREATE NEW "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CreateNewCoinPriceAlert, {
-    show: $data.showCreateNewCoinPriceAlertWindow,
-    "initialy-selected": _ctx.$route.params.id,
-    onClose: _cache[1] || (_cache[1] = function ($event) {
-      return $data.showCreateNewCoinPriceAlertWindow = false;
-    })
-  }, null, 8
-  /* PROPS */
-  , ["show", "initialy-selected"])], 64
+  , ["users-coin-price-alerts"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" DETAILS "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_view), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" CREATE NEW "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <CreateNewCoinPriceAlert \n    :show=\"showCreateNewCoinPriceAlertWindow\" \n    :initialy-selected=\"$route.params.id\"\n    @close='showCreateNewCoinPriceAlertWindow = false'\n    /> ")], 64
   /* STABLE_FRAGMENT */
   );
 }
@@ -23755,16 +23778,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm-bundler.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm-bundler.js");
 /* harmony import */ var _components_pages_Home_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/components/pages/Home.vue */ "./resources/js/components/pages/Home.vue");
 /* harmony import */ var _components_pages_SingleCurrency_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/pages/SingleCurrency.vue */ "./resources/js/components/pages/SingleCurrency.vue");
 /* harmony import */ var _components_pages_CoinPriceAlertDetail_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/pages/CoinPriceAlertDetail.vue */ "./resources/js/components/pages/CoinPriceAlertDetail.vue");
+/* harmony import */ var _components_pages_CreateNewCoinPriceAlert_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components/pages/CreateNewCoinPriceAlert.vue */ "./resources/js/components/pages/CreateNewCoinPriceAlert.vue");
 
 
 
 
-var routerHistory = (0,vue_router__WEBPACK_IMPORTED_MODULE_3__.createWebHistory)();
-var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_3__.createRouter)({
+
+var routerHistory = (0,vue_router__WEBPACK_IMPORTED_MODULE_4__.createWebHistory)();
+var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_4__.createRouter)({
   history: routerHistory,
   routes: [{
     path: '/',
@@ -23775,6 +23800,10 @@ var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_3__.createRouter)({
     name: 'single-currency',
     component: _components_pages_SingleCurrency_vue__WEBPACK_IMPORTED_MODULE_1__.default,
     children: [{
+      path: 'alerts/create',
+      name: 'alert-create',
+      component: _components_pages_CreateNewCoinPriceAlert_vue__WEBPACK_IMPORTED_MODULE_3__.default
+    }, {
       path: 'alerts/:alertId',
       name: 'alert-details',
       component: _components_pages_CoinPriceAlertDetail_vue__WEBPACK_IMPORTED_MODULE_2__.default
@@ -23951,6 +23980,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
                 }).then(function (_ref3) {
                   var data = _ref3.data;
                   // handle success
+                  // before commiting, need to add id of newly created record, so that router link on index page could receive all necesatly params
+                  payload.id = data.id;
                   context.commit('ADD_NEW_ALERT_FOR_COIN', payload); // this.usersCoinPriceAlerts = [...data.coinPriceAlerts]
                 })["catch"](function (error) {
                   // handle error
@@ -70284,35 +70315,6 @@ _CoinPriceAlertTableRow_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__
 
 /***/ }),
 
-/***/ "./resources/js/components/includes/CreateNewCoinPriceAlert.vue":
-/*!**********************************************************************!*\
-  !*** ./resources/js/components/includes/CreateNewCoinPriceAlert.vue ***!
-  \**********************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _CreateNewCoinPriceAlert_vue_vue_type_template_id_1e6937e2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CreateNewCoinPriceAlert.vue?vue&type=template&id=1e6937e2 */ "./resources/js/components/includes/CreateNewCoinPriceAlert.vue?vue&type=template&id=1e6937e2");
-/* harmony import */ var _CreateNewCoinPriceAlert_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CreateNewCoinPriceAlert.vue?vue&type=script&lang=js */ "./resources/js/components/includes/CreateNewCoinPriceAlert.vue?vue&type=script&lang=js");
-/* harmony import */ var _vueform_slider_themes_default_css_vue_type_style_index_0_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @vueform/slider/themes/default.css?vue&type=style&index=0&lang=css */ "./node_modules/@vueform/slider/themes/default.css?vue&type=style&index=0&lang=css");
-
-
-
-
-;
-_CreateNewCoinPriceAlert_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _CreateNewCoinPriceAlert_vue_vue_type_template_id_1e6937e2__WEBPACK_IMPORTED_MODULE_0__.render
-/* hot reload */
-if (false) {}
-
-_CreateNewCoinPriceAlert_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.__file = "resources/js/components/includes/CreateNewCoinPriceAlert.vue"
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_CreateNewCoinPriceAlert_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default);
-
-/***/ }),
-
 /***/ "./resources/js/components/includes/Footer.vue":
 /*!*****************************************************!*\
   !*** ./resources/js/components/includes/Footer.vue ***!
@@ -70675,6 +70677,35 @@ _CoinPriceAlertDetail_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.d
 
 /***/ }),
 
+/***/ "./resources/js/components/pages/CreateNewCoinPriceAlert.vue":
+/*!*******************************************************************!*\
+  !*** ./resources/js/components/pages/CreateNewCoinPriceAlert.vue ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _CreateNewCoinPriceAlert_vue_vue_type_template_id_47b69d02__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CreateNewCoinPriceAlert.vue?vue&type=template&id=47b69d02 */ "./resources/js/components/pages/CreateNewCoinPriceAlert.vue?vue&type=template&id=47b69d02");
+/* harmony import */ var _CreateNewCoinPriceAlert_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CreateNewCoinPriceAlert.vue?vue&type=script&lang=js */ "./resources/js/components/pages/CreateNewCoinPriceAlert.vue?vue&type=script&lang=js");
+/* harmony import */ var _vueform_slider_themes_default_css_vue_type_style_index_0_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @vueform/slider/themes/default.css?vue&type=style&index=0&lang=css */ "./node_modules/@vueform/slider/themes/default.css?vue&type=style&index=0&lang=css");
+
+
+
+
+;
+_CreateNewCoinPriceAlert_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _CreateNewCoinPriceAlert_vue_vue_type_template_id_47b69d02__WEBPACK_IMPORTED_MODULE_0__.render
+/* hot reload */
+if (false) {}
+
+_CreateNewCoinPriceAlert_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.__file = "resources/js/components/pages/CreateNewCoinPriceAlert.vue"
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_CreateNewCoinPriceAlert_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default);
+
+/***/ }),
+
 /***/ "./resources/js/components/pages/Home.vue":
 /*!************************************************!*\
   !*** ./resources/js/components/pages/Home.vue ***!
@@ -70771,22 +70802,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_CoinPriceAlertTableRow_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__.default)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_CoinPriceAlertTableRow_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./CoinPriceAlertTableRow.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/includes/CoinPriceAlertTableRow.vue?vue&type=script&lang=js");
- 
-
-/***/ }),
-
-/***/ "./resources/js/components/includes/CreateNewCoinPriceAlert.vue?vue&type=script&lang=js":
-/*!**********************************************************************************************!*\
-  !*** ./resources/js/components/includes/CreateNewCoinPriceAlert.vue?vue&type=script&lang=js ***!
-  \**********************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_CreateNewCoinPriceAlert_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__.default)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_CreateNewCoinPriceAlert_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./CreateNewCoinPriceAlert.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/includes/CreateNewCoinPriceAlert.vue?vue&type=script&lang=js");
  
 
 /***/ }),
@@ -70999,6 +71014,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/pages/CreateNewCoinPriceAlert.vue?vue&type=script&lang=js":
+/*!*******************************************************************************************!*\
+  !*** ./resources/js/components/pages/CreateNewCoinPriceAlert.vue?vue&type=script&lang=js ***!
+  \*******************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_CreateNewCoinPriceAlert_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__.default)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_CreateNewCoinPriceAlert_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./CreateNewCoinPriceAlert.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/pages/CreateNewCoinPriceAlert.vue?vue&type=script&lang=js");
+ 
+
+/***/ }),
+
 /***/ "./resources/js/components/pages/Home.vue?vue&type=script&lang=js":
 /*!************************************************************************!*\
   !*** ./resources/js/components/pages/Home.vue?vue&type=script&lang=js ***!
@@ -71075,22 +71106,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_CoinPriceAlertTableRow_vue_vue_type_template_id_26bbecb9__WEBPACK_IMPORTED_MODULE_0__.render)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_CoinPriceAlertTableRow_vue_vue_type_template_id_26bbecb9__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./CoinPriceAlertTableRow.vue?vue&type=template&id=26bbecb9 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/includes/CoinPriceAlertTableRow.vue?vue&type=template&id=26bbecb9");
-
-
-/***/ }),
-
-/***/ "./resources/js/components/includes/CreateNewCoinPriceAlert.vue?vue&type=template&id=1e6937e2":
-/*!****************************************************************************************************!*\
-  !*** ./resources/js/components/includes/CreateNewCoinPriceAlert.vue?vue&type=template&id=1e6937e2 ***!
-  \****************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_CreateNewCoinPriceAlert_vue_vue_type_template_id_1e6937e2__WEBPACK_IMPORTED_MODULE_0__.render)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_CreateNewCoinPriceAlert_vue_vue_type_template_id_1e6937e2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./CreateNewCoinPriceAlert.vue?vue&type=template&id=1e6937e2 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/includes/CreateNewCoinPriceAlert.vue?vue&type=template&id=1e6937e2");
 
 
 /***/ }),
@@ -71315,6 +71330,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_CoinPriceAlertDetail_vue_vue_type_template_id_3ac87c8b__WEBPACK_IMPORTED_MODULE_0__.render)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_CoinPriceAlertDetail_vue_vue_type_template_id_3ac87c8b__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./CoinPriceAlertDetail.vue?vue&type=template&id=3ac87c8b */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/pages/CoinPriceAlertDetail.vue?vue&type=template&id=3ac87c8b");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/pages/CreateNewCoinPriceAlert.vue?vue&type=template&id=47b69d02":
+/*!*************************************************************************************************!*\
+  !*** ./resources/js/components/pages/CreateNewCoinPriceAlert.vue?vue&type=template&id=47b69d02 ***!
+  \*************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_CreateNewCoinPriceAlert_vue_vue_type_template_id_47b69d02__WEBPACK_IMPORTED_MODULE_0__.render)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_CreateNewCoinPriceAlert_vue_vue_type_template_id_47b69d02__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./CreateNewCoinPriceAlert.vue?vue&type=template&id=47b69d02 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/pages/CreateNewCoinPriceAlert.vue?vue&type=template&id=47b69d02");
 
 
 /***/ }),

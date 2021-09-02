@@ -40,7 +40,7 @@
 
     <div class="row flex flex-wrap pt-5">
         <div class="col-12 w-full">
-            <h2 class='w-full inline-flex justify-between'>Price Alerts <span @click="showCreateNewCoinPriceAlertWindow = true">New Price Alert</span></h2>
+            <h2 class='w-full inline-flex justify-between'>Price Alerts <router-link :to="{name : 'alert-create', params : {id : $route.params.id}}">New Price Alert</router-link></h2>
 
             <CoinPriceAlertTable :users-coin-price-alerts="usersCoinPriceAlerts" />
         </div>
@@ -50,11 +50,11 @@
     <router-view></router-view>
 
     <!-- CREATE NEW -->
-    <CreateNewCoinPriceAlert 
+    <!-- <CreateNewCoinPriceAlert 
     :show="showCreateNewCoinPriceAlertWindow" 
     :initialy-selected="$route.params.id"
     @close='showCreateNewCoinPriceAlertWindow = false'
-    />
+    /> -->
 
 
 
@@ -63,14 +63,14 @@
 import TimeRangeSelect from '@/components/includes/TimeRangeSelect'
 import PriceChangeChartFull from '@/components/includes/PriceChangeChartFull'
 import CoinPriceAlertTable from '@/components/includes/CoinPriceAlertTable'
-import CreateNewCoinPriceAlert from '@/components/includes/CreateNewCoinPriceAlert'
+// import CreateNewCoinPriceAlert from '@/components/includes/CreateNewCoinPriceAlert'
 // import CoinPriceAlertDetail from '@/components/includes/CoinPriceAlertDetail'
 export default {
     components : {
         TimeRangeSelect,
         PriceChangeChartFull,
         CoinPriceAlertTable,
-        CreateNewCoinPriceAlert,
+        // CreateNewCoinPriceAlert,
         // CoinPriceAlertDetail
     },
 

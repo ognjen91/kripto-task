@@ -43,9 +43,10 @@ class CoinPriceAlertController extends Controller
     public function store(CoinPriceAlertRequest $request)
     {
         $validatedData = $request->validated();
-        $request->user()->coinPriceAlerts()->create($validatedData);
+        $newAlert = $request->user()->coinPriceAlerts()->create($validatedData);
         return response()->json([
-            'status' => 'Success'
+            'status' => 'Success',
+            'id' => $newAlert->id
         ], 201);
     }
 

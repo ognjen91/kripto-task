@@ -74,12 +74,15 @@ export default {
         },
 
         mounted(){
-            this.selectedCoin = this.coins.find(coin => coin.id == this.initialySelected)
-
-            // for dev...
             setTimeout(()=>{
-                this.selectedCoin = this.coins[0]
-            }, 1000)
+                 this.selectedCoin = this.$store.getters['coins/getTheCoin'](this.initialySelected)
+            }, 200)
+            // for dev...
+            // setTimeout(()=>{
+            //     this.selectedCoin = this.coins[0]
+            // }, 1000)
         },    
+
+        
     }
 </script>

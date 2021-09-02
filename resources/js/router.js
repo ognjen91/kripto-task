@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '@/components/pages/Home.vue'
 import SingleCurrency from '@/components/pages/SingleCurrency.vue'
 import CoinPriceAlertDetail from '@/components/pages/CoinPriceAlertDetail.vue'
+import CreateNewCoinPriceAlert from '@/components/pages/CreateNewCoinPriceAlert.vue'
 
 const routerHistory = createWebHistory()
 
@@ -18,6 +19,11 @@ const router = createRouter({
       name: 'single-currency',
       component: SingleCurrency,
       children: [
+        {
+          path: 'alerts/create',
+          name: 'alert-create',
+          component: CreateNewCoinPriceAlert
+        },
         {
           path: 'alerts/:alertId',
           name: 'alert-details',

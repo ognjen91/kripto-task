@@ -91,6 +91,8 @@ export default {
       })
       .then(({data}) => {
         // handle success
+        // before commiting, need to add id of newly created record, so that router link on index page could receive all necesatly params
+        payload.id = data.id
         context.commit('ADD_NEW_ALERT_FOR_COIN', payload)
       // this.usersCoinPriceAlerts = [...data.coinPriceAlerts]
       })

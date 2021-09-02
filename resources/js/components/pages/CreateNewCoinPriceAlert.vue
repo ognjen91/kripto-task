@@ -1,9 +1,17 @@
 <template>
-    <div class="full-size-dark-wrap create-coin-price-alert-wrap fixed flex justify-center items-center" v-if="show">
+    <div class="full-size-dark-wrap create-coin-price-alert-wrap fixed flex justify-center items-center">
+    <!-- <div class="full-size-dark-wrap create-coin-price-alert-wrap fixed flex justify-center items-center" v-if='selectedCoin'> -->
         <div class="create-coin-price-alert floating-window bg-white flex flex-col">
+            <div class="w-full">
+                <p class='w-full text-center'>New Price Alert</p>
+                    <router-link :to="{name : 'single-currency', params : {id : $route.params.id}}" class='absolute top-0 right-3'>
+                    <IconTimes />
+                    </router-link>
+            </div>
+
             <SelectCoin 
             class='mb-3'
-            :initialy-selected="initialySelected"
+            :initialy-selected="$route.params.id"
             @coinWasSelected="setSelectedCoin"
             >
             <template #title>
@@ -40,12 +48,11 @@
             </div>
 
             <div class="note-wrap flex flex-col">
-                    <p>Notify me when the price reaches</p>
+                    <p>Note</p>
                     <textarea class="w-full" id="" v-model="note"></textarea>
             </div>
 
             <button class='mt-3' @click='submit'>Save alert</button>
-
         </div>
     </div>
 </template>
@@ -61,16 +68,6 @@ export default {
     Slider
   },
 
-  props : {
-      show : {
-          Type : Boolean,
-          required : true
-      },
-      initialySelected : {
-          Type : String,
-          required : true
-      }
-  },
 
     data(){
         return {
@@ -103,14 +100,11 @@ export default {
                 note : this.note
             })
 
-            this.$emit('close')
+            this.$router.push({name : 'single-currency', params : {id : this.$route.params.id}})
         }
     },
 
     watch : {
-        show(newVal){
-            this.selectedCoin = this.coins.find(coin => coin.id == this.initialySelected)
-        },
         selectedCoin: {
         handler(val, oldVal){
             this.targetPrice = val.current_price + 10
@@ -121,7 +115,11 @@ export default {
          targetPrice(newVal, oldVal){
              if (!/^-?[\d.]+(?:e-?\d+)?$/.test(newVal)) this.targetPrice = oldVal //if new value is number, take back the old value!
          }
-}
+    },
+    
+    mounted(){
+        // this.selectedCoin = this.$store.getters['coins/getTheCoin'](this.$route.params.id)
+    }
   
 }
 </script>

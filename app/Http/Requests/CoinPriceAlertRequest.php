@@ -27,7 +27,7 @@ class CoinPriceAlertRequest extends FormRequest
             return [
                 'coin_id' => 'required|string',
                 'target_price' => 'required|numeric',
-                // 'target_price' => 'required|numeric',
+                'price_on_set_date' => 'required|numeric',
                 'percentage_range' => 'nullable|numeric',
                 'note' => 'nullable'
             ];
