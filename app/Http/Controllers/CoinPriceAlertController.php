@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Resources\CoinPriceAlertResource;
+use App\Http\Requests\CoinPriceAlertRequest;
 
 class CoinPriceAlertController extends Controller
 {
@@ -39,9 +40,13 @@ class CoinPriceAlertController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CoinPriceAlertRequest $request)
     {
-        //
+        $validatedData = $request->validated();
+        $request->user()->coinPriceAlerts()->create($validatedData);
+        return response()->json([
+            'status' => 'Success'
+        ], 201);
     }
 
     /**
@@ -73,9 +78,9 @@ class CoinPriceAlertController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CoinPriceAlertRequest $request, $id)
     {
-        //
+
     }
 
     /**
@@ -84,8 +89,19 @@ class CoinPriceAlertController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    // public function destroy(Request $request, $id)
+    public function destroy(Request $request)
     {
-        //
+        $alert = $request->user()->coinPriceAlerts()->find($request->id);
+        if($alert){
+            $alert->delete();
+            return response()->json([
+                'status' => 'Deleted'
+            ], 201);
+        } 
+
+        return response()->json([
+            'status' => 'Error'
+        ], 501);
     }
 }

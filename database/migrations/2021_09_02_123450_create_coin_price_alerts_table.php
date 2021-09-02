@@ -19,8 +19,9 @@ class CreateCoinPriceAlertsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('coin_id');
-            $table->unsignedFloat('price');
-            $table->integer('percentage_range');
+            $table->unsignedFloat('target_price');
+            $table->unsignedFloat('price_on_set_date');
+            $table->bigInteger('percentage_range')->default(0);
 
             $table->text('note')->nullable();
 

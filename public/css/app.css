@@ -32172,7 +32172,7 @@ header .logo {
   left: 0;
 }
 
-.create-coin-price-alert-wrap .create-coin-price-alert {
+.full-size-dark-wrap .floating-window {
   width: 41.67%;
   max-width: 600px;
   height: 553px;
@@ -32224,6 +32224,30 @@ header .logo {
   width: 44px;
 }
 
+.create-coin-price-alert-wrap .create-coin-price-alert textarea {
+  height: 56px;
+  resize: none;
+}
+
+.create-coin-price-alert-wrap .create-coin-price-alert textarea:focus {
+  outline: none;
+}
+
+.create-coin-price-alert-wrap .create-coin-price-alert button {
+  background-color: #009EFC;
+  padding: 16px 0;
+  color: white;
+}
+
+.coin-price-alert-detail-wrap .coin-price-alert-detail .header img {
+  width: 48px;
+}
+
+.coin-price-alert-detail-wrap .coin-price-alert-detail .close {
+  background-color: #009EFC;
+  color: white;
+}
+
 .slider-wrap .slider .slider__range {
   height: 8px;
   background-color: #F5F5F5;
@@ -32246,6 +32270,7 @@ header .logo {
   font-size: 12px;
   line-height: 14px;
   background-color: #33CC00;
+  transform: translate(-50%);
 }
 
 .slider-wrap .slider .tooltip.minus {

@@ -16,9 +16,11 @@ class CoinPriceAlertResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
             'coinId' => $this->coin_id,
             'percentageRange' => $this->percentage_range,
-            'price' => $this->price,
+            'targetPrice' => $this->target_price,
+            'priceOnSetDate' => $this->price_on_set_date,
             'createdAt' => Carbon::parse($this->created_at)->format('d M Y H:i')
         ];
     }

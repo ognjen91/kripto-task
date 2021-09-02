@@ -24,7 +24,8 @@ class CoinPriceAlertFactory extends Factory
         return [
             'user_id' => 1,
             'coin_id' => 'bitcoin',
-            'price' => rand(5, 100000),
+            'target_price' => rand(5, 100000),
+            'price_on_set_date' => rand(5, 100000),
             'percentage_range' => rand(-30, 30)
         ];
     }

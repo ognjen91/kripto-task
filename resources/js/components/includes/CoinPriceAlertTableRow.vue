@@ -1,9 +1,13 @@
 <template>
         <tr>
-            <td>{{coinPriceAlert.coinId}}</td>
-            <td>1 {{coinPriceAlert.coinId}} > {{coinPriceAlert.price}}</td>
+            <td><router-link :to="{name : 'alert-details', params : {id:$route.params.id, alertId : coinPriceAlert.id}}">{{coinPriceAlert.coinId}}</router-link></td>
+            <td>1 {{coinPriceAlert.coinId}} > {{coinPriceAlert.targetPrice}}</td>
             <td>{{coinPriceAlert.createdAt}}</td>
-            <td><IconTrash width='70px' height='70px' /></td>
+            <td>
+                <div @click="deleteAlert" class='cursor-pointer'>
+                 <IconTrash width='70px' height='70px' />
+                </div>
+            </td>
         </tr>
 </template>
 <script>
@@ -17,6 +21,16 @@ export default {
         coinPriceAlert : {
             Type : Object,
             required : true
+        }
+    },
+
+    methods : {
+        deleteAlert(){
+            if(!confirm("Are you sure that you want to delete this alert?")) return;
+            this.$store.dispatch('coins/deleteAlert', {
+                id : this.coinPriceAlert.id,
+                coinId : this.coinPriceAlert.coinId
+            })
         }
     }
 }

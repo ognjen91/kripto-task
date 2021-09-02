@@ -1,6 +1,5 @@
 <template>
     <div class="row"  v-if="coin">
-
         <!-- BASIC DATA... NAME -->
         <div class="col-12 flex justify-start items-center mb-3">
             <img :src="coin.image.small" :alt="'logo of ' + coin.name">
@@ -47,10 +46,16 @@
         </div>
     </div>
 
+    <!-- DETAILS -->
+    <router-view></router-view>
+
+    <!-- CREATE NEW -->
     <CreateNewCoinPriceAlert 
     :show="showCreateNewCoinPriceAlertWindow" 
     :initialy-selected="$route.params.id"
+    @close='showCreateNewCoinPriceAlertWindow = false'
     />
+
 
 
 </template>
@@ -59,12 +64,14 @@ import TimeRangeSelect from '@/components/includes/TimeRangeSelect'
 import PriceChangeChartFull from '@/components/includes/PriceChangeChartFull'
 import CoinPriceAlertTable from '@/components/includes/CoinPriceAlertTable'
 import CreateNewCoinPriceAlert from '@/components/includes/CreateNewCoinPriceAlert'
+// import CoinPriceAlertDetail from '@/components/includes/CoinPriceAlertDetail'
 export default {
     components : {
         TimeRangeSelect,
         PriceChangeChartFull,
         CoinPriceAlertTable,
-        CreateNewCoinPriceAlert
+        CreateNewCoinPriceAlert,
+        // CoinPriceAlertDetail
     },
 
     data(){
@@ -72,8 +79,8 @@ export default {
             coin : null,
             chartData : {},
             selectedTimeRange : '24h',
-            usersCoinPriceAlerts : [],
-            showCreateNewCoinPriceAlertWindow : true
+            // usersCoinPriceAlerts : [],
+            showCreateNewCoinPriceAlertWindow : false
         }
     },
 
@@ -83,6 +90,10 @@ export default {
             let plusMinus = this.coin.market_data.price_change_percentage_24h > 0? '+' : '-'
             return `${plusMinus} ${this.coin.market_data.price_change_24h} EUR (${plusMinus} ${this.coin.market_data.price_change_percentage_24h}%)`
         },
+
+        usersCoinPriceAlerts(){
+            return this.$store.getters['coins/alertsForCoinWithId'](this.$route.params.id)
+        }
     },
 
 
@@ -100,24 +111,11 @@ export default {
         const basicData = await axios.get(
             `https://api.coingecko.com/api/v3/coins/${coinId}`
         );
-        // const data = basicData.data;
         this.coin = basicData.data
-        // console.log(data)
 
-        // GET COIN PRICE ALERTS FOR THE USER
-        axios.get(`/api/user/alerts/${coinId}`)
-        // axios.get(`/api/user`)
-        .then(({data}) => {
-            // handle success
-            this.usersCoinPriceAlerts = [...data.coinPriceAlerts]
+        this.$store.dispatch('coins/getAlertsForCoinWithId', {
+            coinId
         })
-        .catch(function (error) {
-            // handle error
-            console.log(error);
-        })
-        .then(function () {
-            // always executed
-        });
 
     }
 }

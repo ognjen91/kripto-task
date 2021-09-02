@@ -10,7 +10,7 @@
                 {{currentValue}}{{appendSign}}
             </div>
 
-            <div class="slider__range"
+            <div class="slider__range border"
             v-for="(range,i) in totalRanges"
             :key="'range-'+i"
             :style="{width : rangeWidth}"

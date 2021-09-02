@@ -11,8 +11,10 @@ class CoinPriceAlert extends Model
     protected $fillable = [
         'user_id',
         'coin_id',
-        'price',
+        'target_price',
+        'price_on_set_date',
         'percentage_range',
+        'note'
     ];
 
     /**

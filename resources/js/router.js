@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '@/components/pages/Home.vue'
 import SingleCurrency from '@/components/pages/SingleCurrency.vue'
+import CoinPriceAlertDetail from '@/components/pages/CoinPriceAlertDetail.vue'
 
 const routerHistory = createWebHistory()
 
@@ -15,7 +16,14 @@ const router = createRouter({
     {
       path: '/currency/:id',
       name: 'single-currency',
-      component: SingleCurrency
+      component: SingleCurrency,
+      children: [
+        {
+          path: 'alerts/:alertId',
+          name: 'alert-details',
+          component: CoinPriceAlertDetail
+        }
+      ]
     },
   ]
 })

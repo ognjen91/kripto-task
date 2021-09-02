@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CurrencyController;
+use App\Http\Controllers\CoinAlertPageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,7 @@ use App\Http\Controllers\CurrencyController;
 
 Route::get('/', [CurrencyController::class, 'index']);
 Route::get('/currency/{slug}', [CurrencyController::class, 'show']);
+Route::get('/currency/{slug}/alerts/{id}', CoinAlertPageController::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

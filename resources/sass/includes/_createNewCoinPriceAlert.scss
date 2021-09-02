@@ -7,19 +7,15 @@
     left: 0;
 }
 
-.create-coin-price-alert-wrap
-.create-coin-price-alert{
+.full-size-dark-wrap
+.floating-window {
     width: 41.67%;
     max-width: 600px;
     height: 553px;
     padding: 33px;
 }
 
-.create-coin-price-alert-wrap
-.create-coin-price-alert
-.select-wrap{
 
-}
 .create-coin-price-alert-wrap
 .create-coin-price-alert
 .select-wrap
@@ -78,4 +74,22 @@
     & .currency, & .percentage{
         width: 44px;
     }
+}
+
+.create-coin-price-alert-wrap
+.create-coin-price-alert
+textarea{
+    height: 56px;
+    resize: none;
+    &:focus{
+        outline: none;
+    }
+}
+
+.create-coin-price-alert-wrap
+.create-coin-price-alert
+button{
+    background-color: #009EFC;
+    padding: 16px 0;
+    color: white;
 }

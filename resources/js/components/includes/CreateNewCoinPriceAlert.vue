@@ -1,6 +1,6 @@
 <template>
     <div class="full-size-dark-wrap create-coin-price-alert-wrap fixed flex justify-center items-center" v-if="show">
-        <div class="create-coin-price-alert bg-white flex flex-col">
+        <div class="create-coin-price-alert floating-window bg-white flex flex-col">
             <SelectCoin 
             class='mb-3'
             :initialy-selected="initialySelected"
@@ -16,7 +16,7 @@
                 <div class="flex flex-col notify-value-wrap number-input-wrap">
                     <p>Notify me when the price reaches</p>
                     <div class="flex  w-full">
-                        <input type="number" class='notify-value' min="0" v-model="notifyValue">
+                        <input type="number" class='notify-value' min="0" v-model="targetPrice">
                         <div class="currency f-full flex items-center bg-gray">EUR</div>
                     </div>
                 </div>
@@ -38,6 +38,13 @@
                     @valueSelected="setPercentageRangeValue"
                     />
             </div>
+
+            <div class="note-wrap flex flex-col">
+                    <p>Notify me when the price reaches</p>
+                    <textarea class="w-full" id="" v-model="note"></textarea>
+            </div>
+
+            <button class='mt-3' @click='submit'>Save alert</button>
 
         </div>
     </div>
@@ -68,9 +75,16 @@ export default {
     data(){
         return {
             selectedCoin : null,
-            notifyValue : 100,
-            percentageRange : 0
+            targetPrice : 100,
+            percentageRange : 0,
+            note : ''
         }
+    },
+
+    computed : {
+            coins(){
+                return this.$store.getters['coins/allCoins']
+            },
     },
 
     methods : {
@@ -79,6 +93,17 @@ export default {
         },
         setPercentageRangeValue(val){
             this.percentageRange = val
+        },
+        async submit(){
+            await this.$store.dispatch('coins/addNewAlert', {
+                coinId : this.selectedCoin.id,
+                priceOnSetDate : this.selectedCoin.current_price,
+                targetPrice : this.targetPrice,
+                percentageRange : this.percentageRange,
+                note : this.note
+            })
+
+            this.$emit('close')
         }
     },
 
@@ -88,13 +113,13 @@ export default {
         },
         selectedCoin: {
         handler(val, oldVal){
-            this.notifyValue = val.current_price + 10
+            this.targetPrice = val.current_price + 10
         },
         deep: true
          },
 
-         notifyValue(newVal, oldVal){
-             if (!/^-?[\d.]+(?:e-?\d+)?$/.test(newVal)) this.notifyValue = oldVal //if new value is number, take back the old value!
+         targetPrice(newVal, oldVal){
+             if (!/^-?[\d.]+(?:e-?\d+)?$/.test(newVal)) this.targetPrice = oldVal //if new value is number, take back the old value!
          }
 }
   
