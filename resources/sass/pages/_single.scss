@@ -1,7 +1,143 @@
+.single
+.header{
+    margin-bottom: 24px;
+
+    & img{
+        width: 48px;
+        margin-right: 16px;
+    }
+    
+    & h1{
+        font-size: 1.5rem;
+        margin-right:31px;
+    }
+    
+    & svg{
+        width: 23px;
+        height: 23px;
+    }
+}
+
+.single
+.section-title{
+    font-size: 1.125rem;
+    line-height: 1.375px;
+    margin-bottom: 15px;
+}
+
+.single
+.numeric-and-alerts{
+    width: 68.47%; 
+}
+
+.single
+.numeric-and-alerts
+.numeric{
+    margin-bottom: 33px;
+}
+
+.single
+.numeric-and-alerts
+.numeric
+.basic{
+    padding: 33px 0 0 31px;
+    
+    & .basic-label{
+        font-size: .75rem;
+        margin-bottom: 16px;
+    }
+    
+    & h3{ //price
+        font-size: 1.25rem;
+        line-height: 1.5rem;
+        margin-right: 81px;
+    }
+
+    & .last-24 .change{
+        font-size: .875rem;
+
+        & .perc-change{
+            margin-left: 8px;
+            border-radius: 10px;
+            padding: 2px 3px;
+
+            &.plus{
+                background-color: rgba($green, 0.1);
+            }
+            &.minus{
+                background-color: rgba($red, 0.1);
+            }
+        }
+    }
+}
+
+.single
+.numeric-and-alerts
+.time-range-wrap {
+    top: 27px;
+    right: 24px;
+}
+
+.single
+.numeric-and-alerts
+.time-range-select{
+    height: 24px;
+    border-radius: 46px;
+    font-size: .75rem;
+    overflow: hidden;
+    
+    & .option{
+        padding: 6px 8px;
+    }
+}
+
+.single
+.numeric-and-alerts
+.numbers-under-chart{
+    padding: 23px 31px;
+    
+    & .label{
+        font-size: .75rem;
+        margin-bottom: 16px;
+    }
+    & .value{
+        font-size: 1.125rem;
+    }
+}
+
+.single
+.numeric-and-alerts
+.alerts{
+    & .new-alert-link{
+        font-size: .875rem;
+        line-height: 1.375rem;
+    }
+
+
+}
+
+.single
+.coin-alerts-index{
+    & tr.heading{
+        height: 36px;
+        font-size: .875rem;
+    }
+
+    & tr td:first-of-type{
+        padding-left: 24px;
+    }
+
+    & tr:not(.heading){
+        height: 80px;
+    }
+}
+
+
 .coin-alerts-index 
 tr.alert-
 td{
     height: 80px;
+    min-height: 80px;
 }
 
 .coin-alerts-index 
@@ -9,4 +145,78 @@ tr.alert-row
 img{
     width: 32px;
     height: 32px;
+}
+
+
+
+/* ASIDE */
+.single
+.single-aside{
+    width: 28%;
+}
+
+.single
+.single-aside
+.my-wallet-wrap{
+    margin-bottom: 28px;
+    
+    & svg{
+        width: 17px;
+        height: 17px;
+    }
+    
+    & .my-wallet{
+        padding: 32px 24px 24px 32px;
+    }
+    & .my-wallet .balance-title{
+        font-size: .75rem;
+        margin-bottom: 24px;
+    }
+    & .my-wallet .the-balance{
+        font-size: 2rem;
+        line-height: 1.5rem;
+        margin-bottom: 16px;
+    }
+    & .my-wallet .eur-balance{
+        font-size: .875rem;
+        margin-bottom: 24px;
+    }
+    
+    & .buttons button{
+        padding: 12px 43px;
+        font-size: .875rem;
+    }
+    & .buttons button svg{
+        width: 16px;
+        height: 16px;
+        margin-right: 10px;
+    }
+}
+
+.single
+.single-aside
+.my-transactions-wrap{
+    & p.history{
+        font-size: .875rem;
+    }
+
+    & .transaction{
+        border-bottom: 1px solid $lightGray;
+        padding: 24px 26px;
+    }
+
+    & .transaction p.day{
+        margin-bottom: 4px;
+    } 
+
+    & .transaction p.title, 
+    & .transaction p.balance {
+        font-size: .875rem;
+        margin-bottom: 8px;
+    }
+    & .transaction p.subtitle, 
+    & .transaction p.balance-eur,
+    & .transaction p.month{
+        font-size: .75rem;
+    }
 }

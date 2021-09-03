@@ -1,8 +1,4 @@
 <template>
-        <!-- <h1>{{timeRange}}</h1> -->
-        <!-- <h1>{{currentTimestamp}}</h1> -->
-        <!-- <h1>{{chartStartTimestamp}}</h1> -->
-        <!-- <p>{{chartData}}</p> -->
          <apexchart 
          type="area" 
          height="350" 
@@ -83,6 +79,10 @@ export default {
                 data: []
             }],
             chartOptions: {
+                colors: ['orange'],
+                fill: {
+                     type: 'gradient' 
+                },
                 chart: {
                     type: 'area',
                     height: 350,

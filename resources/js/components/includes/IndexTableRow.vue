@@ -15,7 +15,7 @@
         <td>{{coin.current_price}}</td>
         <td :class="{'text-green' : coin.price_change_percentage_24h>0, 'text-red' : coin.price_change_percentage_24h < 0}">{{coin.price_change_percentage_24h}} %</td>
         <td>{{coin.market_cap}}</td>
-        <td>???</td>
+        <td>/</td>
         <td class='seven-days-chart'><PriceChangeChartSimple :data="lastWeekChanges" /></td>
     </tr>
 </template>

@@ -1,16 +1,18 @@
 <template>
-        <tr v-if='coin' class='alert-row'>
-            <td class='flex items-center'>
+        <tr v-if='coin' class='alert-row text-right'>
+            <td class='text-left'>
+                <div class="h-full flex items-center">
                 <router-link
                 class='h-full flex items-center' 
                 :to="{name : 'alert-details', params : {id:$route.params.id, alertId : coinPriceAlert.id}}">
                 <img :src="coin.image" alt="" class='mr-2'> {{coin.name}} <span class='uppercase ml-2'>{{coin.symbol}}</span>
                 </router-link>
+                </div>
             </td>
-            <td>1 {{coin.symbol}} > {{coinPriceAlert.targetPrice}} EUR</td>
+            <td>1 <span class="uppercase">{{coin.symbol}}</span> > {{coinPriceAlert.targetPrice}} EUR</td>
             <td>{{coinPriceAlert.createdAt}}</td>
             <td>
-                <div @click="deleteAlert" class='cursor-pointer'>
+                <div @click="deleteAlert" class='cursor-pointer flex justify-end'>
                  <IconTrash width='70px' height='70px' />
                 </div>
             </td>

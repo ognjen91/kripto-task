@@ -23,3 +23,7 @@ html{
 @import 'pages/single';
 @import 'pages/createNewCoinPriceAlert';
 @import 'pages/coinPriceAlertDetails';
+
+.apexcharts-menu-icon{
+    display: none !important;
+}

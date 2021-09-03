@@ -1,10 +1,10 @@
 <template>
     <table class='coin-alerts-index bg-white w-full'>
-        <tr>
-            <th>Currency</th>
+        <tr class='heading text-gray font-light text-right'>
+            <th class='text-left pl-6'>Currency</th>
             <th>Alert Price</th>
             <th>Set On</th>
-            <th>Delete</th>
+            <th class='pr-4'>Delete</th>
         </tr>
         <!-- RENDER ROWS DYNAMICALY -->
         <CoinPriceAlertTableRow

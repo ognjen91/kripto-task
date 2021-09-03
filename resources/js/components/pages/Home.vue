@@ -12,11 +12,11 @@
                 <thead class='text-right'>
                     <tr>
                         <th class='text-left pl-5' @click="orderByPriceChangePercentage24h = false">Currency</th>
-                        <th class='border'>Price</th>
-                        <th class='border change24 flex h-full items-center' @click='orderBy24hChange'><IconArrow :class="{'asc' : order =='DESC'}" /> Change 24h</th>
-                        <th class='border'>Market cap</th>
-                        <th class='border'>Volume 24h</th>
-                        <th class='border'>Price graph 7d</th>
+                        <th>Price</th>
+                        <th class=' change24 flex h-full items-center' @click='orderBy24hChange'><IconArrow :class="{'asc' : order =='DESC'}" /> Change 24h</th>
+                        <th>Market cap</th>
+                        <th>Volume 24h</th>
+                        <th>Price graph 7d</th>
                     </tr>
                 </thead>
                 <tbody>

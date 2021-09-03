@@ -42,11 +42,23 @@ class CompareCoinPricesAndSendNotifications extends Command
         //first, let's get all records from the db at once and save some db calls
         $allCoins = CoinPriceHistory::all();
         
-        //get unique coin_id
+        //get unique coin_ids, e.g.['bitcoin', 'dogecoins', ...]
         $uniqueCoins = $allCoins->unique('coin_id')->pluck('coin_id');
 
+        // IDEA: Iterate through array of unique ids and compare last two records
+        // if the price has change, send notifications via websocket
+        // at the end, delete previous reason for the reason of optimization
+
+        // But first, JUST IN CASE!!!
+        // if there is more than 2 records, delete all but the last two
+        if (count($coinRecords) > 2) {
+            $records = array_values($coinRecords); //as we have assoc array and we can't use $coinRecords[0] & $coinRecords[1]
+            for($i=0; $i<count($records - 1); $i++){
+                $records[$i]->delete();
+            }
+        }
+
         $uniqueCoins->each(function($coinId) use ($allCoins){
-            // dd($allCoins);
             $coinRecords = $allCoins->where('coin_id', $coinId)->all(); //get all the records with that exact id
             // now, if there are two records, compare prices
             if(count($coinRecords) == 2){
@@ -59,6 +71,8 @@ class CompareCoinPricesAndSendNotifications extends Command
                 //finaly, delete previous record
                 $previousRecord->delete();
             }
+            
+
         });
         // dd($coins); 
     }

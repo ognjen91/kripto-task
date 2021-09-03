@@ -1,7 +1,7 @@
 <template>
     <div>
         <Header />
-            <main class='container'>
+            <main class='w-full'>
                 <router-view></router-view>
             </main>
         <Footer />
@@ -33,6 +33,7 @@ export default {
 
     watch : {
         idsOfCoinsWithAlerts(newVal){
+            // LISTEN FOR CHANGES AND SHOW NOTIFICATION
         for(let i in newVal){
                 let coinId = newVal[i];
                 window.Echo.private(`alert.${coinId}`)
@@ -57,20 +58,11 @@ export default {
             console.log(`${e.coinId} ${e.previousPrice} ${e.currentPrice} ${e.priceChangePercentage24h}`)
         });
 
-
-        // LISTEN FOR CHANGES AND SHOW NOTIFICATION
-
-
         await this.$store.dispatch('coins/getAlerts') //await so we could get list of coins with alerts
-        // console.log('foo')
-        // for(let i in this.idsOfCoinsWithAlerts){
-        //     console.log(this.idsOfCoinsWithAlerts[i])
-        // }
 
-        // window.Echo.private(`alert.${coinId}`)
-        // .listen('CoinPriceChanged', (e) => {
-        //     console.log(`alert...alert... ${e.coinId} ${e.currentPrice}`)
-        // });
+
+
+
         
     }
 }

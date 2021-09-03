@@ -19514,6 +19514,17 @@ header .logo {
   width: 171px;
 }
 
+footer {
+  padding: 0 10.14% 0;
+  background-color: #F8F8F8;
+}
+
+footer > div {
+  padding: 24px 0 19px;
+  border-top: 1px solid #EAEAEA;
+  font-size: 0.875rem;
+}
+
 .slider-wrap .slider .slider__range {
   height: 8px;
   background-color: #F5F5F5;
@@ -19609,13 +19620,195 @@ main {
   display: none;
 }
 
+.single .header {
+  margin-bottom: 24px;
+}
+
+.single .header img {
+  width: 48px;
+  margin-right: 16px;
+}
+
+.single .header h1 {
+  font-size: 1.5rem;
+  margin-right: 31px;
+}
+
+.single .header svg {
+  width: 23px;
+  height: 23px;
+}
+
+.single .section-title {
+  font-size: 1.125rem;
+  line-height: 1.375px;
+  margin-bottom: 15px;
+}
+
+.single .numeric-and-alerts {
+  width: 68.47%;
+}
+
+.single .numeric-and-alerts .numeric {
+  margin-bottom: 33px;
+}
+
+.single .numeric-and-alerts .numeric .basic {
+  padding: 33px 0 0 31px;
+}
+
+.single .numeric-and-alerts .numeric .basic .basic-label {
+  font-size: 0.75rem;
+  margin-bottom: 16px;
+}
+
+.single .numeric-and-alerts .numeric .basic h3 {
+  font-size: 1.25rem;
+  line-height: 1.5rem;
+  margin-right: 81px;
+}
+
+.single .numeric-and-alerts .numeric .basic .last-24 .change {
+  font-size: 0.875rem;
+}
+
+.single .numeric-and-alerts .numeric .basic .last-24 .change .perc-change {
+  margin-left: 8px;
+  border-radius: 10px;
+  padding: 2px 3px;
+}
+
+.single .numeric-and-alerts .numeric .basic .last-24 .change .perc-change.plus {
+  background-color: rgba(51, 204, 0, 0.1);
+}
+
+.single .numeric-and-alerts .numeric .basic .last-24 .change .perc-change.minus {
+  background-color: rgba(229, 9, 21, 0.1);
+}
+
+.single .numeric-and-alerts .time-range-wrap {
+  top: 27px;
+  right: 24px;
+}
+
+.single .numeric-and-alerts .time-range-select {
+  height: 24px;
+  border-radius: 46px;
+  font-size: 0.75rem;
+  overflow: hidden;
+}
+
+.single .numeric-and-alerts .time-range-select .option {
+  padding: 6px 8px;
+}
+
+.single .numeric-and-alerts .numbers-under-chart {
+  padding: 23px 31px;
+}
+
+.single .numeric-and-alerts .numbers-under-chart .label {
+  font-size: 0.75rem;
+  margin-bottom: 16px;
+}
+
+.single .numeric-and-alerts .numbers-under-chart .value {
+  font-size: 1.125rem;
+}
+
+.single .numeric-and-alerts .alerts .new-alert-link {
+  font-size: 0.875rem;
+  line-height: 1.375rem;
+}
+
+.single .coin-alerts-index tr.heading {
+  height: 36px;
+  font-size: 0.875rem;
+}
+
+.single .coin-alerts-index tr td:first-of-type {
+  padding-left: 24px;
+}
+
+.single .coin-alerts-index tr:not(.heading) {
+  height: 80px;
+}
+
 .coin-alerts-index tr.alert- td {
   height: 80px;
+  min-height: 80px;
 }
 
 .coin-alerts-index tr.alert-row img {
   width: 32px;
   height: 32px;
+}
+
+/* ASIDE */
+
+.single .single-aside {
+  width: 28%;
+}
+
+.single .single-aside .my-wallet-wrap {
+  margin-bottom: 28px;
+}
+
+.single .single-aside .my-wallet-wrap svg {
+  width: 17px;
+  height: 17px;
+}
+
+.single .single-aside .my-wallet-wrap .my-wallet {
+  padding: 32px 24px 24px 32px;
+}
+
+.single .single-aside .my-wallet-wrap .my-wallet .balance-title {
+  font-size: 0.75rem;
+  margin-bottom: 24px;
+}
+
+.single .single-aside .my-wallet-wrap .my-wallet .the-balance {
+  font-size: 2rem;
+  line-height: 1.5rem;
+  margin-bottom: 16px;
+}
+
+.single .single-aside .my-wallet-wrap .my-wallet .eur-balance {
+  font-size: 0.875rem;
+  margin-bottom: 24px;
+}
+
+.single .single-aside .my-wallet-wrap .buttons button {
+  padding: 12px 43px;
+  font-size: 0.875rem;
+}
+
+.single .single-aside .my-wallet-wrap .buttons button svg {
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+}
+
+.single .single-aside .my-transactions-wrap p.history {
+  font-size: 0.875rem;
+}
+
+.single .single-aside .my-transactions-wrap .transaction {
+  border-bottom: 1px solid #F5F5F5;
+  padding: 24px 26px;
+}
+
+.single .single-aside .my-transactions-wrap .transaction p.day {
+  margin-bottom: 4px;
+}
+
+.single .single-aside .my-transactions-wrap .transaction p.title, .single .single-aside .my-transactions-wrap .transaction p.balance {
+  font-size: 0.875rem;
+  margin-bottom: 8px;
+}
+
+.single .single-aside .my-transactions-wrap .transaction p.subtitle, .single .single-aside .my-transactions-wrap .transaction p.balance-eur, .single .single-aside .my-transactions-wrap .transaction p.month {
+  font-size: 0.75rem;
 }
 
 /**
@@ -19828,6 +20021,10 @@ SELECT COMPONENT
 
 .coin-price-alert-detail-wrap .coin-price-alert-detail .buttons-holder:first-of-type {
   margin-bottom: 6px;
+}
+
+.apexcharts-menu-icon {
+  display: none !important;
 }
 
 @media (min-width: 640px){

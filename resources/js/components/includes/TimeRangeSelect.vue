@@ -1,10 +1,10 @@
 <template>
-    <div class="flex">
+    <div class="flex time-range-select">
         <span
         v-for="(option,i) in options"
         :key="'time-range-option-'+i"
-        class='mr-2 uppercase cursor-pointer'
-        :class="{'active font-bold' : selected == option}"
+        class='option uppercase cursor-pointer bg-blue-light'
+        :class="{'active font-bold text-blue' : selected == option, 'text-gray' : selected !== option}"
         @click='select(option)'
         >
         {{option}}
