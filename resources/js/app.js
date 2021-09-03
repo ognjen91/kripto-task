@@ -32,11 +32,11 @@ var pusher = new Pusher('28985a5d0af054a90190', {
 
 // var channel = pusher.subscribe('coin-price-changed');
 // channel.bind('CoinPriceChanged', function(data) {
-    // alert('Price has changed');
+//     alert('Price has changed');
 // });
 
-Echo.private('coin-price-changed')
-.listen('CoinPriceChanged', (e) => {
-    console.log(`${e.coinId} ${e.previousPrice} ${e.currentPrice}`)
-});
+// Echo.private('coin-price-changed')
+// .listen('CoinPriceChanged', (e) => {
+//     console.log(`${e.coinId} ${e.previousPrice} ${e.currentPrice}`)
+// });
 

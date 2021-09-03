@@ -13,15 +13,13 @@ class CoinPriceAlertController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, $coinId)
+    public function index(Request $request)
     {
-        $usersCoinPriceAlertsForTheCoin = $request->user()->coinPriceAlerts()->coinId($coinId)->get();
-
-
-
+        $usersCoinPriceAlerts = $request->user()->coinPriceAlerts;
         return response()->json([
-            'coinPriceAlerts' => CoinPriceAlertResource::collection($usersCoinPriceAlertsForTheCoin)->resolve()
+            'coinPriceAlerts' => CoinPriceAlertResource::collection($usersCoinPriceAlerts)->resolve()
         ], 201); // Status code here
+
     }
 
     /**

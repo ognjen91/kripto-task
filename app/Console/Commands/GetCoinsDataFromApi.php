@@ -47,10 +47,13 @@ class GetCoinsDataFromApi extends Command
             foreach($coins as $coin){
                 CoinPriceHistory::create([
                     'coin_id' => $coin->id,
-                    'price' => $coin->current_price
+                    'price' => $coin->current_price,
+                    'price_change_percentage_24h' => $coin->price_change_percentage_24h
                 ]);
             }
             return true;
+        } else {
+            echo 'Network error';
         }
 
         return false;

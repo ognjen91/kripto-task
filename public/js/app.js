@@ -21311,22 +21311,51 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
-      perPage: 20
+      perPage: 20,
+      echo: null
     };
+  },
+  computed: {
+    idsOfCoinsWithAlerts: function idsOfCoinsWithAlerts() {
+      return this.$store.getters['coins/idsOfCoinsWithAlerts'];
+    }
   },
   created: function created() {
     var _this = this;
 
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+      var coinId;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _this.$store.dispatch('coins/setCoinsData', {
+              _context.next = 2;
+              return _this.$store.dispatch('coins/setCoinsData', {
                 perPage: _this.perPage
               });
 
-            case 1:
+            case 2:
+              _this.$store.dispatch('coins/getAlerts'); // LISTEN FOR CHANGES AND UPDATE DATA IN VUEX
+
+
+              window.Echo.channel('coin-price-changed').listen('CoinPriceChanged', function (e) {
+                _this.$store.commit('coins/UPDATE_COIN_PRICE', {
+                  coinId: e.coinId,
+                  currentPrice: e.currentPrice,
+                  priceChangePercentage24h: e.priceChangePercentage24h
+                });
+
+                console.log("".concat(e.coinId, " ").concat(e.previousPrice, " ").concat(e.currentPrice, " ").concat(e.priceChangePercentage24h));
+              }); // let coinId;
+              // let currentPrice;
+              // LISTEN FOR CHANGES AND SHOW NOTIFICATION
+
+              coinId = 'bitcoin';
+              window.Echo["private"]("alert.".concat(coinId)).listen('CoinPriceChanged', function (e) {
+                console.log("alert...alert... ".concat(e.coinId, " ").concat(e.currentPrice));
+              });
+
+            case 6:
             case "end":
               return _context.stop();
           }
@@ -21389,6 +21418,11 @@ __webpack_require__.r(__webpack_exports__);
       required: true
     }
   },
+  computed: {
+    coin: function coin() {
+      return this.$store.getters['coins/getTheCoin'](this.coinPriceAlert.coinId);
+    }
+  },
   methods: {
     deleteAlert: function deleteAlert() {
       if (!confirm("Are you sure that you want to delete this alert?")) return;
@@ -21439,18 +21473,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_includes_PriceChangeChartSimple__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/includes/PriceChangeChartSimple */ "./resources/js/components/includes/PriceChangeChartSimple.vue");
 
 
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -21472,25 +21494,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   mounted: function mounted() {
-    var _this = this;
-
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-      var currentTimestamp, sevenDaysAgoTimestamp, basicData;
+      var currentTimestamp, sevenDaysAgoTimestamp;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
               currentTimestamp = Math.round(+new Date() / 1000);
               sevenDaysAgoTimestamp = currentTimestamp - 7 * 24 * 3600; // console.log(currentTimestamp, sevenDaysAgoTimestamp)
+              // const basicData = await axios.get(
+              //  `https://api.coingecko.com/api/v3/coins/${this.coin.id}/market_chart/range?vs_currency=eur&from=${sevenDaysAgoTimestamp}&to=${currentTimestamp}`
+              // );
+              // this.lastWeekChanges = [...basicData.data.prices]
+              // console.log(data)
 
-              _context.next = 4;
-              return axios.get("https://api.coingecko.com/api/v3/coins/".concat(_this.coin.id, "/market_chart/range?vs_currency=eur&from=").concat(sevenDaysAgoTimestamp, "&to=").concat(currentTimestamp));
-
-            case 4:
-              basicData = _context.sent;
-              _this.lastWeekChanges = _toConsumableArray(basicData.data.prices); // console.log(data)
-
-            case 6:
+            case 2:
             case "end":
               return _context.stop();
           }
@@ -21838,11 +21856,10 @@ __webpack_require__.r(__webpack_exports__);
     var _this2 = this;
 
     setTimeout(function () {
-      _this2.selectedCoin = _this2.$store.getters['coins/getTheCoin'](_this2.initialySelected);
-    }, 200); // for dev...
-    // setTimeout(()=>{
-    //     this.selectedCoin = this.coins[0]
-    // }, 1000)
+      var selectedCoin = _this2.$store.getters['coins/getTheCoin'](_this2.initialySelected);
+
+      _this2.select(selectedCoin);
+    }, 200);
   }
 });
 
@@ -22221,8 +22238,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       if (!/^-?[\d.]+(?:e-?\d+)?$/.test(newVal)) this.targetPrice = oldVal; //if new value is number, take back the old value!
     }
   },
-  mounted: function mounted() {// this.selectedCoin = this.$store.getters['coins/getTheCoin'](this.$route.params.id)
-  }
+  mounted: function mounted() {}
 });
 
 /***/ }),
@@ -22254,7 +22270,20 @@ __webpack_require__.r(__webpack_exports__);
     coins: function coins() {
       return this.$store.getters['coins/allCoins'];
     }
-  }
+  } // mounted(){
+  //     window.Echo = new Echo({
+  //     broadcaster: 'pusher',
+  //     key: process.env.MIX_PUSHER_APP_KEY,
+  //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
+  //     forceTLS: true,
+  //     encrypted: true
+  //     });
+  //     Echo.private('coin-price-changed')
+  //     .listen('CoinPriceChanged', (e) => {
+  //         console.log(`${e.coinId} ${e.previousPrice} ${e.currentPrice}`)
+  //     });
+  // }
+
 });
 
 /***/ }),
@@ -22335,11 +22364,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               basicData = _context.sent;
               _this.coin = basicData.data;
 
-              _this.$store.dispatch('coins/getAlertsForCoinWithId', {
-                coinId: coinId
-              });
-
-            case 6:
+            case 5:
             case "end":
               return _context.stop();
           }
@@ -22365,6 +22390,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
+  "class": "idsOfCoinsWithAlerts"
+};
+var _hoisted_2 = {
   "class": "container"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -22374,7 +22402,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_Footer = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Footer");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Header), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_view)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Footer)]);
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Header), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.idsOfCoinsWithAlerts), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_view)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Footer)]);
 }
 
 /***/ }),
@@ -22393,7 +22423,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "bg-white w-full"
+  "class": "coin-alerts-index bg-white w-full"
 };
 
 var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Currency"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Alert Price"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Set On"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Delete")], -1
@@ -22430,12 +22460,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
+var _hoisted_1 = {
+  key: 0,
+  "class": "alert-row"
+};
+var _hoisted_2 = {
+  "class": "flex items-center"
+};
+var _hoisted_3 = ["src"];
+var _hoisted_4 = {
+  "class": "uppercase ml-2"
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
 
   var _component_IconTrash = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("IconTrash");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+  return $options.coin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+    "class": "h-full flex items-center",
     to: {
       name: 'alert-details',
       params: {
@@ -22445,7 +22487,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.coinPriceAlert.coinId), 1
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+        src: $options.coin.image,
+        alt: "",
+        "class": "mr-2"
+      }, null, 8
+      /* PROPS */
+      , _hoisted_3), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.coin.name) + " ", 1
+      /* TEXT */
+      ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.coin.symbol), 1
       /* TEXT */
       )];
     }),
@@ -22454,7 +22504,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   }, 8
   /* PROPS */
-  , ["to"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, "1 " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.coinPriceAlert.coinId) + " > " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.coinPriceAlert.targetPrice), 1
+  , ["to"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, "1 " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.coin.symbol) + " > " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.coinPriceAlert.targetPrice) + " EUR", 1
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.coinPriceAlert.createdAt), 1
   /* TEXT */
@@ -22466,7 +22516,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_IconTrash, {
     width: "70px",
     height: "70px"
-  })])])]);
+  })])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true);
 }
 
 /***/ }),
@@ -22557,13 +22607,8 @@ var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 /* HOISTED */
 );
 
-var _hoisted_6 = {
-  "class": "seven-days-chart"
-};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
-
-  var _component_PriceChangeChartSimple = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("PriceChangeChartSimple");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
     src: $props.coin.image,
@@ -22593,15 +22638,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.coin.current_price), 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.coin.price_change_24h), 1
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.coin.price_change_percentage_24h) + " %", 1
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.coin.market_cap), 1
   /* TEXT */
-  ), _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_PriceChangeChartSimple, {
-    data: $data.lastWeekChanges
-  }, null, 8
-  /* PROPS */
-  , ["data"])])]);
+  ), _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <td class='seven-days-chart'><PriceChangeChartSimple :data=\"lastWeekChanges\" /></td> ")]);
 }
 
 /***/ }),
@@ -23296,7 +23337,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "mr-2"
   }, null, 8
   /* PROPS */
-  , _hoisted_6), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_8, "1 " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.coin.symbol) + " = " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.coinPriceAlert.price) + " EUR", 1
+  , _hoisted_6), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_8, "1 " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.coin.symbol) + " = " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.coinPriceAlert.targetPrice) + " EUR", 1
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Current price: 1 " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.coin.symbol) + " = " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.coin.current_price) + " EUR", 1
   /* TEXT */
@@ -23722,12 +23763,12 @@ var pusher = new Pusher('28985a5d0af054a90190', {
   cluster: 'eu'
 }); // var channel = pusher.subscribe('coin-price-changed');
 // channel.bind('CoinPriceChanged', function(data) {
-// alert('Price has changed');
+//     alert('Price has changed');
 // });
-
-Echo["private"]('coin-price-changed').listen('CoinPriceChanged', function (e) {
-  console.log("".concat(e.coinId, " ").concat(e.previousPrice, " ").concat(e.currentPrice));
-});
+// Echo.private('coin-price-changed')
+// .listen('CoinPriceChanged', (e) => {
+//     console.log(`${e.coinId} ${e.previousPrice} ${e.currentPrice}`)
+// });
 
 /***/ }),
 
@@ -23879,6 +23920,20 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         return state.alerts[coinId] || [];
       };
     },
+    allAlerts: function allAlerts(state) {
+      return state.alerts;
+    },
+    idsOfCoinsWithAlerts: function idsOfCoinsWithAlerts(state) {
+      var coinsThatMayHaveAlerts = Object.keys(state.alerts); //but as some keys may have empty arrays, return only these whose alerts are not empty
+
+      var coinsWithAlerts = [];
+
+      for (var i = 0; i < coinsThatMayHaveAlerts.length; i++) {
+        if (state.alerts[coinsThatMayHaveAlerts[i]].length) coinsWithAlerts.push(coinsThatMayHaveAlerts[i]);
+      }
+
+      return coinsWithAlerts;
+    },
     getTheAlert: function getTheAlert(state) {
       return function (coinId, alertId) {
         if (!Object.keys(state.alerts).includes(coinId)) return null;
@@ -23912,6 +23967,19 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       });
       if (index > -1) alertsOfTheCoin.splice(index, 1);
       state.alerts[payload.coinId] = alertsOfTheCoin;
+    },
+    UPDATE_COIN_PRICE: function UPDATE_COIN_PRICE(state, payload) {
+      var allCoins = _toConsumableArray(state.allCoins);
+
+      var theCoinIndex = allCoins.findIndex(function (coin) {
+        return coin.id == payload.coinId;
+      });
+      if (theCoinIndex == -1) return; // update price and percentage now
+
+      allCoins[theCoinIndex]['current_price'] = payload.currentPrice;
+      allCoins[theCoinIndex]['current_price'] = payload.currentPrice; // assign array to state
+
+      state.allCoins = allCoins;
     }
   },
   actions: {
@@ -23939,19 +24007,19 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         }, _callee);
       }))();
     },
-    getAlertsForCoinWithId: function getAlertsForCoinWithId(context, payload) {
+    getAlerts: function getAlerts(context) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/user/alerts/".concat(payload.coinId)).then(function (_ref2) {
+                axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/user/alerts").then(function (_ref2) {
                   var data = _ref2.data;
+
                   // handle success
-                  context.commit('SET_ALERTS_FOR_COIN_WITH_ID', {
-                    coinId: payload.coinId,
-                    alerts: _toConsumableArray(data.coinPriceAlerts)
-                  }); // this.usersCoinPriceAlerts = [...data.coinPriceAlerts]
+                  for (var i in data.coinPriceAlerts) {
+                    context.commit('ADD_NEW_ALERT_FOR_COIN', data.coinPriceAlerts[i]);
+                  }
                 })["catch"](function (error) {
                   // handle error
                   console.log(error);

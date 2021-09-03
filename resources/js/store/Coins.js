@@ -13,6 +13,17 @@ export default {
     allCoins : state => state.allCoins,
     getTheCoin : state => (id) => state.allCoins.find(coin => coin.id == id),
     alertsForCoinWithId : state => (coinId) => state.alerts[coinId] || [],
+    allAlerts : state => state.alerts,
+    idsOfCoinsWithAlerts : state => {
+      let coinsThatMayHaveAlerts = Object.keys(state.alerts)
+      //but as some keys may have empty arrays, return only these whose alerts are not empty
+      let coinsWithAlerts = []
+      for(let i=0; i<coinsThatMayHaveAlerts.length; i++){
+        if(state.alerts[coinsThatMayHaveAlerts[i]].length) coinsWithAlerts.push(coinsThatMayHaveAlerts[i])
+      }
+
+      return coinsWithAlerts
+    },
     getTheAlert : state => (coinId, alertId) => {
       if(!Object.keys(state.alerts).includes(coinId)) return null;
       let alert = state.alerts[coinId].find(alert => alert.id == alertId)
@@ -45,6 +56,19 @@ export default {
       let index = alertsOfTheCoin.findIndex(alert => alert.id == payload.id)
       if (index > -1) alertsOfTheCoin.splice(index, 1);
       state.alerts[payload.coinId] = alertsOfTheCoin
+    },
+
+    UPDATE_COIN_PRICE : (state, payload) => {
+      let allCoins = [...state.allCoins]
+      let theCoinIndex = allCoins.findIndex(coin => coin.id == payload.coinId)
+      if(theCoinIndex == -1) return
+
+
+      // update price and percentage now
+      allCoins[theCoinIndex]['current_price'] = payload.currentPrice
+      allCoins[theCoinIndex]['current_price'] = payload.currentPrice
+      // assign array to state
+      state.allCoins = allCoins
     }
 
   },
@@ -65,15 +89,14 @@ export default {
         })
       },
       
-      async getAlertsForCoinWithId (context, payload) {
-        axios.get(`/api/user/alerts/${payload.coinId}`)
+      async getAlerts (context) {
+        axios.get(`/api/user/alerts`)
         .then(({data}) => {
           // handle success
-          context.commit('SET_ALERTS_FOR_COIN_WITH_ID', {
-            coinId : payload.coinId,
-            alerts : [...data.coinPriceAlerts]
-          })
-        // this.usersCoinPriceAlerts = [...data.coinPriceAlerts]
+          for(let i in data.coinPriceAlerts){
+            context.commit('ADD_NEW_ALERT_FOR_COIN', data.coinPriceAlerts[i])
+          }
+
       })
       .catch(function (error) {
           // handle error

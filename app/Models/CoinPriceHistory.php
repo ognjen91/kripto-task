@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class CoinPriceHistory extends Model
 {
     use HasFactory;
-    protected $fillable = ['coin_id', 'price'];
+    protected $fillable = ['coin_id', 'price', 'price_change_percentage_24h'];
 
 
 }

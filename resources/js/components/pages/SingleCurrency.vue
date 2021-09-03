@@ -113,9 +113,6 @@ export default {
         );
         this.coin = basicData.data
 
-        this.$store.dispatch('coins/getAlertsForCoinWithId', {
-            coinId
-        })
 
     }
 }

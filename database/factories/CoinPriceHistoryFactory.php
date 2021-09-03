@@ -34,7 +34,8 @@ class CoinPriceHistoryFactory extends Factory
     {
         return [
             'coin_id' => $this->faker->randomElement($this->coins),
-            'price' => rand(1,1000000)
+            'price' => rand(1,1000000),
+            'price_change_percentage_24h' => rand(0,100)
         ];
     }
 }

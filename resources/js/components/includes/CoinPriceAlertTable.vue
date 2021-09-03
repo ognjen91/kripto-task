@@ -1,5 +1,5 @@
 <template>
-    <table class='bg-white w-full'>
+    <table class='coin-alerts-index bg-white w-full'>
         <tr>
             <th>Currency</th>
             <th>Alert Price</th>

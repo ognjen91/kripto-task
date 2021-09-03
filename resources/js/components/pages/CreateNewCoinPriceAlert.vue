@@ -106,9 +106,9 @@ export default {
 
     watch : {
         selectedCoin: {
-        handler(val, oldVal){
-            this.targetPrice = val.current_price + 10
-        },
+            handler(val, oldVal){
+                this.targetPrice = val.current_price + 10
+            },
         deep: true
          },
 
@@ -118,7 +118,7 @@ export default {
     },
     
     mounted(){
-        // this.selectedCoin = this.$store.getters['coins/getTheCoin'](this.$route.params.id)
+        
     }
   
 }

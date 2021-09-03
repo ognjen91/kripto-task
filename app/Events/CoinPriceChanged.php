@@ -18,6 +18,7 @@ class CoinPriceChanged implements ShouldBroadcast
     public $coinId;
     public $previousPrice;
     public $currentPrice;
+    public $priceChangePercentage24h;
 
     /**
      * Create a new event instance.
@@ -29,6 +30,7 @@ class CoinPriceChanged implements ShouldBroadcast
         $this->coinId = $previousRecord->coin_id;
         $this->previousPrice = $previousRecord->price;
         $this->currentPrice = $currentRecored->price;
+        $this->priceChangePercentage24h = $currentRecored->price_change_percentage_24h;
     }
 
     /**
@@ -38,6 +40,9 @@ class CoinPriceChanged implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('coin-price-changed');
+        return [
+            new Channel('coin-price-changed'),
+            new PrivateChannel('alert.'.$this->coinId)
+        ];
     }
 }

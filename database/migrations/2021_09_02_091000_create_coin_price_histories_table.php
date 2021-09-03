@@ -17,6 +17,7 @@ class CreateCoinPriceHistoriesTable extends Migration
             $table->id();
             $table->string('coin_id');
             $table->unsignedFloat('price');
+            $table->float('price_change_percentage_24h')->nullable();
             $table->timestamps();
         });
     }

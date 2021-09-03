@@ -12,7 +12,7 @@
                 <div class="w-full flex justify-center header mb-5">
                     <img :src="coin.image" :alt="'logo'" class='mr-2'>
                     <div class="flex flex-col price-details">
-                        <p class="h1">1 {{coin.symbol}} = {{coinPriceAlert.price}} EUR</p>
+                        <p class="h1">1 {{coin.symbol}} = {{coinPriceAlert.targetPrice}} EUR</p>
                         <p>Current price: 1 {{coin.symbol}} = {{coin.current_price}} EUR</p>
                     </div>
                 </div>

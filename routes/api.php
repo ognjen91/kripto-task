@@ -26,7 +26,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         return $request->user();
     });
 
-    Route::get('/user/alerts/{coinId}' , [CoinPriceAlertController::class, 'index'])->name('coin-price-alerts.index');
+    Route::get('/user/alerts' , [CoinPriceAlertController::class, 'index'])->name('coin-price-alerts.index');
     Route::post('/user/alerts' , [CoinPriceAlertController::class, 'store'])->name('coin-price-alerts.store');
     Route::delete('/user/alerts' , [CoinPriceAlertController::class, 'destroy'])->name('coin-price-alerts.destroy');
 

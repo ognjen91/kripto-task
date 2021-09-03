@@ -1,7 +1,13 @@
 <template>
-        <tr>
-            <td><router-link :to="{name : 'alert-details', params : {id:$route.params.id, alertId : coinPriceAlert.id}}">{{coinPriceAlert.coinId}}</router-link></td>
-            <td>1 {{coinPriceAlert.coinId}} > {{coinPriceAlert.targetPrice}}</td>
+        <tr v-if='coin' class='alert-row'>
+            <td class='flex items-center'>
+                <router-link
+                class='h-full flex items-center' 
+                :to="{name : 'alert-details', params : {id:$route.params.id, alertId : coinPriceAlert.id}}">
+                <img :src="coin.image" alt="" class='mr-2'> {{coin.name}} <span class='uppercase ml-2'>{{coin.symbol}}</span>
+                </router-link>
+            </td>
+            <td>1 {{coin.symbol}} > {{coinPriceAlert.targetPrice}} EUR</td>
             <td>{{coinPriceAlert.createdAt}}</td>
             <td>
                 <div @click="deleteAlert" class='cursor-pointer'>
@@ -21,6 +27,12 @@ export default {
         coinPriceAlert : {
             Type : Object,
             required : true
+        }
+    },
+
+    computed : {
+        coin(){
+            return this.$store.getters['coins/getTheCoin'](this.coinPriceAlert.coinId)
         }
     },
 

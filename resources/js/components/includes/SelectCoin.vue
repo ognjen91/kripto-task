@@ -75,12 +75,10 @@ export default {
 
         mounted(){
             setTimeout(()=>{
-                 this.selectedCoin = this.$store.getters['coins/getTheCoin'](this.initialySelected)
+                 let selectedCoin = this.$store.getters['coins/getTheCoin'](this.initialySelected)
+                 this.select(selectedCoin)
             }, 200)
-            // for dev...
-            // setTimeout(()=>{
-            //     this.selectedCoin = this.coins[0]
-            // }, 1000)
+
         },    
 
         
