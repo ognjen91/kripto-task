@@ -11,9 +11,9 @@
                 <table class="w-full bg-white" v-if="coins.length">
                 <thead class='text-right'>
                     <tr>
-                        <th class='text-left pl-5'>Currency</th>
+                        <th class='text-left pl-5' @click="orderByPriceChangePercentage24h = false">Currency</th>
                         <th class='border'>Price</th>
-                        <th class='border change24 flex h-full items-center' @click='changeOrder' :class="{'asc' : order =='ASC'}"><IconArrow/> Change 24h</th>
+                        <th class='border change24 flex h-full items-center' @click='orderBy24hChange'><IconArrow :class="{'asc' : order =='DESC'}" /> Change 24h</th>
                         <th class='border'>Market cap</th>
                         <th class='border'>Volume 24h</th>
                         <th class='border'>Price graph 7d</th>
@@ -44,19 +44,23 @@ export default {
 
     data(){
         return {
-            order : 'DESC'
+            order : 'DESC',
+            orderByPriceChangePercentage24h : false
         }
     },
 
     computed : {
         coins(){
             let coins = this.$store.getters['coins/allCoins']
-            return this.order == 'DESC'? coins : coins.sort((a, b) => (+a.price_change_percentage_24h < +b.price_change_percentage_24h) ? 1 : -1)
+            if(!this.orderByPriceChangePercentage24h) return coins
+            let coinsSortCopy = [...coins]
+            return this.order == 'DESC'? coins.sort((a, b) => (+a.price_change_percentage_24h > +b.price_change_percentage_24h) ? 1 : -1) : coinsSortCopy.sort((a, b) => (+a.price_change_percentage_24h < +b.price_change_percentage_24h) ? 1 : -1)
         }
     },
 
     methods : {
-        changeOrder(){
+        orderBy24hChange(){
+            this.orderByPriceChangePercentage24h = true
             this.order = this.order == 'ASC'? 'DESC' : 'ASC'
         }
     }
