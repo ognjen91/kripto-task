@@ -3,7 +3,10 @@
 @tailwind utilities;
 
 html{
-    font-size: 100%;
+    *{
+        font-size: 100%;
+        line-height: 100%;
+    }
 
     @media screen and (min-width: 1920px){
         font-size: 112.5%; // 12.5% greater than 16px (=18px)
@@ -14,9 +17,9 @@ html{
 
 @import 'includes/header';
 @import 'includes/footer';
-@import 'includes/createNewCoinPriceAlert';
-@import 'includes/coinPriceAlertDetails';
 @import 'includes/slider';
 
 @import 'pages/index';
 @import 'pages/single';
+@import 'pages/createNewCoinPriceAlert';
+@import 'pages/coinPriceAlertDetails';

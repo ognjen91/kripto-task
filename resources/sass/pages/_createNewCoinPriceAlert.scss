@@ -1,0 +1,187 @@
+/**
+FLOATING WINDOW PROPS THAT IS SAME FOR ALL WINDOWS IN THE APP
+**/
+.full-size-dark-wrap{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(#000, .5);
+    z-index: 11;
+    top: 0;
+    left: 0;
+}
+
+.full-size-dark-wrap
+.floating-window {
+    width: 41.67%;
+    max-width: 600px;
+    padding: 33px 0 0;
+}
+.full-size-dark-wrap
+.floating-window 
+.floating-window-content
+{
+    padding: 33px;
+}
+
+.full-size-dark-wrap
+.floating-window 
+.title-holder{
+    font-size: 1.125rem;
+    line-height: 1.375rem;
+    margin-bottom: 25px;
+}
+
+.full-size-dark-wrap
+.floating-window 
+.close{
+    right: 37px;
+    top: 38px;
+    & svg{
+        width: 18px;
+        height: 18px;
+    }
+}
+
+/**
+SINGLE WINDOW (CREATE COIN) PROPERTIES
+**/
+
+/**
+SELECT COMPONENT
+**/
+
+
+.create-coin-price-alert-wrap
+.label{
+    font-size: .75rem;
+    margin-bottom: 8px;
+}
+
+.create-coin-price-alert-wrap
+.create-coin-price-alert
+.select-wrap{
+    margin-bottom: 26px;
+}
+
+.create-coin-price-alert-wrap
+.create-coin-price-alert
+.select-wrap
+.options{
+    max-height: 300px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    z-index: 4;
+    margin-bottom: 26px;
+}
+
+.create-coin-price-alert-wrap
+.create-coin-price-alert
+.option{
+    & .option-content{
+        padding: 11px 0 11px 16px;
+    }
+    & img{
+        width: 24px;
+        height: 24px;
+    }
+}
+
+.create-coin-price-alert-wrap
+.create-coin-price-alert
+.option
+.option-name{
+    font-size: .875rem;
+    margin-bottom: 6px;
+}
+
+.create-coin-price-alert-wrap
+.create-coin-price-alert
+.show-dropdown{
+    width: 32px;
+    background-color: $lightGray;
+
+    & svg{
+        fill: $black;
+        width: 15px;
+        transition: transform .5s;
+
+        &.active{
+            transform: rotate(180deg);
+        }
+    }
+}
+
+// =====PART WITH NUMBERS====
+.create-coin-price-alert-wrap
+.create-coin-price-alert
+.target-price-holder{
+    margin-bottom: 41px;
+}
+
+.create-coin-price-alert-wrap
+.create-coin-price-alert{
+    .notify-value{
+        height: 56px;
+        border: 1px solid $lightGray;
+    }
+
+    & .notify-value-wrap{
+        max-width: 321px;
+    }
+    & .percentage-range-wrap{
+        max-width: 190px;
+    }
+}
+
+
+
+.number-input-wrap{
+    & input::-webkit-outer-spin-button,
+    & input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    
+    /* Firefox */
+    & input[type=number] {
+        -moz-appearance: textfield;
+    }
+}
+
+.create-coin-price-alert-wrap
+.create-coin-price-alert{
+    & .currency{
+        margin-right: 25px;
+    }
+    & .currency, & .percentage{
+        width: 44px;
+        padding: 0 8px;
+        font-size: .875rem;
+    }
+}
+
+.create-coin-price-alert-wrap
+.create-coin-price-alert
+.slider-wrap{
+    margin-bottom: 31px;
+}
+
+.create-coin-price-alert-wrap
+.create-coin-price-alert
+textarea{
+    height: 56px;
+    resize: none;
+    border: 1px solid $lightGray;
+    margin-bottom: 27PX;
+    &:focus{
+        outline: none;
+    }
+}
+
+.create-coin-price-alert-wrap
+.create-coin-price-alert
+button{
+    background-color: #009EFC;
+    padding: 16px 0;
+    color: white;
+}

@@ -8,11 +8,43 @@ module.exports = {
     ],
 
     theme: {
-        extend: {
-            fontFamily: {
-                sans: ['Nunito', ...defaultTheme.fontFamily.sans],
+        colors: {
+            transparent: 'transparent',
+            current: 'currentColor',
+            white : {
+                DEFAULT : '#FFF'
             },
-        },
+            black : {
+                DEFAULT : '#333'
+            },
+            blue: {
+              light: '#E5F5FE',
+              DEFAULT: '#009EFC',
+              dark: '#009EFC',
+            },
+            red: {
+              DEFAULT: '#E50915',
+            },
+            green: {
+              DEFAULT: '#33CC00',
+            },
+            gray: {
+                light: '#F5F5F5',
+                DEFAULT: '#999999',
+                dark: '#999999',
+            }
+          },
+
+          borderColor: theme => ({
+            ...theme('colors'),
+             DEFAULT: '#EAEAEA'
+           }),
+
+            extend: {
+                fontFamily: {
+                    sans: ['Rubik', ...defaultTheme.fontFamily.sans],
+                },
+            },
     },
 
     variants: {

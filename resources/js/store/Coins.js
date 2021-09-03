@@ -76,7 +76,8 @@ export default {
   actions: {
     async setCoinsData (context, payload) {
 
-      axios.get(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&&?order=market_cap_asc&&per_page=${payload.perPage}&&page=1`)
+      // axios.get(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&&?order=market_cap_asc&&per_page=${payload.perPage}&&page=1`)
+      axios.get(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=${payload.perPage}&page=1&sparkline=false&price_change_percentage=7d`)
         .then(function ({data}) {
           context.commit('SET_ALL_COINS', data)
         })

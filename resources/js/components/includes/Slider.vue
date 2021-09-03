@@ -1,5 +1,5 @@
 <template>
-    <div class="slider-wrap">
+    <div class="">
         <div class="slider w-full flex relative">
             <div
             v-if="currentValue !== (max + min) / 2" 
@@ -10,7 +10,7 @@
                 {{currentValue}}{{appendSign}}
             </div>
 
-            <div class="slider__range border"
+            <div class="slider__range bg-light-gray"
             v-for="(range,i) in totalRanges"
             :key="'range-'+i"
             :style="{width : rangeWidth}"

@@ -1,39 +1,45 @@
 <template>
             <div class="select-wrap w-full relative">
 
+                <p class='label'><slot name='title'></slot></p>
+
+            
                 <!-- SELECTED OPTION -->
-                <p><slot name='title'></slot></p>
                 <div 
-                class="selected option flex justify-between w-full cursor-pointer border" 
+                class="selected option flex justify-between w-full cursor-pointer border relative" 
                 v-if="selectedCoin"
                 @click="showDropdown = !showDropdown"
                 >
-                    <div class="flex items-center">
+                    <!-- OPTION CONTENT -->
+                    <div class="flex items-center option-content">
                         <img :src="selectedCoin.image" alt="" class='mr-2'>
                         <div class="flex flex-col">
-                            <p><strong>{{selectedCoin.name}} ({{selectedCoin.symbol}})</strong></p>
-                            <p class="price">{{selectedCoin.current_price}} EUR</p>
+                            <p class='option-name'><strong>{{selectedCoin.name}} <span class="uppercase">({{selectedCoin.symbol}})</span></strong></p>
+                            <p class="price text-gray">{{selectedCoin.current_price}} EUR</p>
                         </div>
                     </div>
-
-                    <div class="show-dropdown flex justify-center items-center">
+                    <!-- DROPDOWN THAT ROTATES -->
+                    <div class="show-dropdown flex justify-center items-center bg-gray">
                         <IconChevron :class="{active : showDropdown}" />
                     </div>
                 </div>
 
                 <!-- OTHER OPTIONS -->
                 <div class="options border w-full absolute bg-white" v-if='showDropdown'>
-                    <div 
-                    class="option w-full cursor-pointer"
-                    v-for="(coin, i) in otherOptions"
-                    :key="'coin-option-'+i"
-                    @click="select(coin)"
-                    >
-                        <div class="flex items-center">
-                            <img :src="coin.image" alt="" class='mr-2'>
-                            <div class="flex flex-col">
-                                <p><strong>{{coin.name}} ({{coin.symbol}})</strong></p>
-                                <p class="price">{{coin.current_price}} EUR</p>
+                    <!-- STRUCTURE IS THE SAME AS FOR SELECTED OPTION -->
+                        <div 
+                        class="option w-full cursor-pointer"
+                        v-for="(coin, i) in otherOptions"
+                        :key="'coin-option-'+i"
+                        @click="select(coin)"
+                        >
+                        <div class="flex items-center option-content">
+                            <div class="flex items-center">
+                                <img :src="coin.image" alt="" class='mr-2'>
+                                <div class="flex flex-col">
+                                    <p class='option-name'><strong>{{coin.name}} <span class="uppercase">({{coin.symbol}})</span></strong></p>
+                                    <p class="price text-gray">{{coin.current_price}} EUR</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -41,7 +47,13 @@
             </div>
 </template>
 <script>
+
+import IconChevron from '@/components/includes/icons/IconChevron'
 export default {
+        components: {
+            IconChevron
+        },
+
         props : {
             initialySelected : {
                 Type : String,

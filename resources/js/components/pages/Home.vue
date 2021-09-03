@@ -2,8 +2,8 @@
     <div class='home container'>
         <div class="row">
 
-            <div class="col-12">
-                <h1 class='mb-9'>Criptocurrency Prices</h1>
+            <div class="w-full">
+                <h1 class=''>Criptocurrency Prices</h1>
             </div>
 
             <!-- INDEX TABLE -->
@@ -11,12 +11,12 @@
                 <table class="w-full bg-white" v-if="coins.length">
                 <thead class='text-right'>
                     <tr>
-                        <th class='text-left'>Currency</th>
-                        <th>Price</th>
-                        <th>Change 24h</th>
-                        <th>Market cap</th>
-                        <th>Volume 24h</th>
-                        <th>Price graph 7d</th>
+                        <th class='text-left pl-5'>Currency</th>
+                        <th class='border'>Price</th>
+                        <th class='border change24 flex h-full items-center' @click='changeOrder' :class="{'asc' : order =='ASC'}"><IconArrow/> Change 24h</th>
+                        <th class='border'>Market cap</th>
+                        <th class='border'>Volume 24h</th>
+                        <th class='border'>Price graph 7d</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,37 +35,31 @@
 <script>
 import axios from 'axios'
 import IndexTableRow from '@/components/includes/IndexTableRow'
+import IconArrow from '@/components/includes/icons/IconArrow'
 export default {
     components : {
-        IndexTableRow
+        IndexTableRow,
+        IconArrow
     },
 
     data(){
         return {
-
+            order : 'DESC'
         }
     },
 
     computed : {
         coins(){
-            return this.$store.getters['coins/allCoins']
+            let coins = this.$store.getters['coins/allCoins']
+            return this.order == 'DESC'? coins : coins.sort((a, b) => (+a.price_change_percentage_24h < +b.price_change_percentage_24h) ? 1 : -1)
         }
     },
 
-    // mounted(){
-    //     window.Echo = new Echo({
-    //     broadcaster: 'pusher',
-    //     key: process.env.MIX_PUSHER_APP_KEY,
-    //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-    //     forceTLS: true,
-    //     encrypted: true
-    //     });
-
-    //     Echo.private('coin-price-changed')
-    //     .listen('CoinPriceChanged', (e) => {
-    //         console.log(`${e.coinId} ${e.previousPrice} ${e.currentPrice}`)
-    //     });
-    // }
+    methods : {
+        changeOrder(){
+            this.order = this.order == 'ASC'? 'DESC' : 'ASC'
+        }
+    }
 
 
 

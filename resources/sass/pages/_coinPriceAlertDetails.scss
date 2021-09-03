@@ -1,0 +1,70 @@
+.coin-price-alert-detail-wrap
+.coin-price-alert-detail
+.header{
+    padding: 33px 0;
+    
+    & img{
+        width: 48px;
+        margin-right: 16px;
+    }
+    
+    & .target-price{
+        font-size: 1.5rem;
+        line-height: 2rem;
+    }
+    
+    & .current-price{
+        font-size: .75rem;
+        line-height: .875rem;
+    }
+}
+
+
+.coin-price-alert-detail-wrap
+.coin-price-alert-detail
+.floating-window-content{
+    padding-top: 23px;
+}
+
+.coin-price-alert-detail-wrap
+.coin-price-alert-detail
+.note-holder{
+    padding: 23px 33px;
+    
+    & .title{
+        font-size: .875rem;
+        margin-bottom: 16px;
+    }
+    
+    & .note{
+        font-size: .875rem;
+        line-height: 1.31rem;
+    }
+}
+
+.coin-price-alert-detail-wrap
+.coin-price-alert-detail
+.details-holder{
+    & .detail{
+        font-size: .875rem;
+        
+        &:first-of-type{
+            margin-bottom: 32px;
+        }
+    }
+}
+
+.coin-price-alert-detail-wrap
+.coin-price-alert-detail
+.buttons-holder{
+    padding-top: 41px;
+    
+    & button, & a{
+        padding: 16px 0;
+        border-radius: 4px;
+    }
+
+    &:first-of-type{
+        margin-bottom: 6px;
+    }
+}

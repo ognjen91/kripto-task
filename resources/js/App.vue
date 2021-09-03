@@ -1,7 +1,6 @@
 <template>
     <div>
         <Header />
-                <h1 class='idsOfCoinsWithAlerts'>{{idsOfCoinsWithAlerts}}</h1>
             <main class='container'>
                 <router-view></router-view>
             </main>
@@ -32,9 +31,20 @@ export default {
         }
     },
 
+    watch : {
+        idsOfCoinsWithAlerts(newVal){
+        for(let i in newVal){
+                let coinId = newVal[i];
+                window.Echo.private(`alert.${coinId}`)
+                .listen('CoinPriceChanged', (e) => {
+                    console.log(`alert...alert... ${e.coinId} ${e.currentPrice}`)
+                });
+        }
+        }
+    },
+
     async created(){
         await this.$store.dispatch('coins/setCoinsData', {perPage : this.perPage})
-        this.$store.dispatch('coins/getAlerts')
 
         // LISTEN FOR CHANGES AND UPDATE DATA IN VUEX
         window.Echo.channel('coin-price-changed')
@@ -47,18 +57,20 @@ export default {
             console.log(`${e.coinId} ${e.previousPrice} ${e.currentPrice} ${e.priceChangePercentage24h}`)
         });
 
-        // let coinId;
-        // let currentPrice;
+
         // LISTEN FOR CHANGES AND SHOW NOTIFICATION
-        let coinId = 'bitcoin'
 
 
+        await this.$store.dispatch('coins/getAlerts') //await so we could get list of coins with alerts
+        // console.log('foo')
+        // for(let i in this.idsOfCoinsWithAlerts){
+        //     console.log(this.idsOfCoinsWithAlerts[i])
+        // }
 
-
-        window.Echo.private(`alert.${coinId}`)
-        .listen('CoinPriceChanged', (e) => {
-            console.log(`alert...alert... ${e.coinId} ${e.currentPrice}`)
-        });
+        // window.Echo.private(`alert.${coinId}`)
+        // .listen('CoinPriceChanged', (e) => {
+        //     console.log(`alert...alert... ${e.coinId} ${e.currentPrice}`)
+        // });
         
     }
 }

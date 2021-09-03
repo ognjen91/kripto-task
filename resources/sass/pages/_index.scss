@@ -1,16 +1,43 @@
 main{
     background-color: #F8F8F8;
-    padding: 40px 146px;
+    padding: 40px 10.14%;
 }
 
 .home h1{
-    font-size: 40px;
+    font-size: 2.5rem;
+    margin-bottom: 36px;
 }
 
 
 // STYLING INDEX TABLE
 .home 
 table
+thead{
+    height: 41px;
+    font-size: .875rem;
+    white-space: nowrap;
+
+    & .change24 svg{
+        height: 15px;
+
+        &.asc{
+            transform: rotate(180deg);
+        }
+    }
+}
+
+.home 
+table
+{
+    & td, & th{
+        padding-right: 8px;
+    }
+}
+
+
+.home 
+table
+tbody
 tr{
    height: 80px;
    
@@ -21,8 +48,18 @@ tr{
 
 .home 
 table
-.logo-and-name img{
-    width: 40px;
+.logo-and-name{
+    & svg{
+        width: 17px;
+        margin-right: 16px;
+    }
+
+    padding-left: 28px;
+
+    & img{
+        width: 40px;
+        margin-right: 16px;
+    }
 }
 
 .home 
