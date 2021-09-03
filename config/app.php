@@ -14,7 +14,9 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
-
+    'defaultUsername' => env('DEFAULT_USER_NAME', 'user'),
+    'defaultUserPassword' => env('DEFAULT_USER_PASSWORD', 'password'),
+    'defaultUserEmail' => env('DEFAULT_USER_EMAIL', 'user@kriptomat.io'),
     /*
     |--------------------------------------------------------------------------
     | Application Environment

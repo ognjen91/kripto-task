@@ -18,7 +18,6 @@ class CurrencyController extends Controller
     
     
     public function show(String $slug){
-        // dd('slug');
         return view('welcome');
     }
 

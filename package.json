@@ -30,6 +30,7 @@
         "laravel-echo": "^1.11.2",
         "moment": "^2.29.1",
         "pusher-js": "^7.0.3",
+        "toastr": "^2.1.4",
         "vue": "^3.2.6",
         "vue-next-select": "^2.10.1",
         "vue-router": "^4.0.11",

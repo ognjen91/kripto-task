@@ -40,8 +40,14 @@ class DatabaseSeeder extends Seeder
             'password' => \bcrypt('123456')
         ]);
 
+        User::factory()->create([
+            'name' => config('app.defaultUsername'),
+            'password' => config('app.defaultUserPassword'),
+            'email' => config('app.defaultUserEmail')
+        ]);
+
         CoinPriceAlert::factory()->create([
-            'target_price' => 45000
+            'target_price' => 35000
         ]);
     }
 }

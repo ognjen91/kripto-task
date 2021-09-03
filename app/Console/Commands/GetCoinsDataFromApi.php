@@ -41,7 +41,7 @@ class GetCoinsDataFromApi extends Command
      */
     public function handle()
     {
-        $response = Http::get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&=,,&?order=market_cap_asc&per_page=10&page=1');
+        $response = Http::get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&=,,&?order=market_cap_asc&per_page=5&page=1');
         if($response->status() == 200){
             $coins = json_decode($response->body());
             foreach($coins as $coin){

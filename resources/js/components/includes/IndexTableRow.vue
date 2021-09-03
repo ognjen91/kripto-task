@@ -16,7 +16,7 @@
         <td :class="{'text-green' : coin.price_change_percentage_24h>0, 'text-red' : coin.price_change_percentage_24h < 0}">{{coin.price_change_percentage_24h}} %</td>
         <td>{{coin.market_cap}}</td>
         <td>/</td>
-        <td class='seven-days-chart'><PriceChangeChartSimple :data="lastWeekChanges" /></td>
+        <!-- <td class='seven-days-chart'><PriceChangeChartSimple :data="lastWeekChanges" /></td> -->
     </tr>
 </template>
 <script>
@@ -45,7 +45,7 @@ export default {
 
     computed : {
           hasAlerts(){
-              let idsOfCoinsWithAlerts = this.$store.getters['coins/idsOfCoinsWithAlerts']
+              let idsOfCoinsWithAlerts = this.$store.getters['alerts/idsOfCoinsWithAlerts']
               return idsOfCoinsWithAlerts.includes(this.coin.id)
           }
     },

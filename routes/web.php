@@ -15,7 +15,7 @@ use App\Http\Controllers\CoinAlertPageController;
 |
 */
 
-Route::get('/', [CurrencyController::class, 'index']);
+Route::get('/', [CurrencyController::class, 'index'])->name('welcome');
 Route::get('/currency/{slug}', [CurrencyController::class, 'show']);
 Route::get('/currency/{slug}/alerts/{id}', CoinAlertPageController::class);
 

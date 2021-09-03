@@ -1,14 +1,17 @@
 <template>
     <div class="single flex justify-between"  v-if="coin">
-    <!-- <div class="row flex" >
-        
-    </div> -->
 
     <!-- NUMERIC DATA WITH CHART-->
     <div class="numeric-and-alerts flex flex-col relative">
+
+        <div class="w-full back-to-assets">
+            <router-link :to="{name : 'home'}" class='text-blue flex'><IconChevron class='mr-2' /> Back To Assets</router-link>
+        </div>
+
+
         <!-- BASIC DATA... NAME, LOGO, STAR -->
         <div class="header col-12 flex justify-start items-center mb-3">
-            <img :src="coin.image.small" :alt="'logo of ' + coin.name">
+            <img :src="coin.image.small" :alt="'logo of ' + coin.name"> 
             <h1 class="mx-2 mb-0">{{coin.name}} <span class="uppercase text-gray">{{coin.symbol}}</span></h1>
             
             <!-- STAR, FULL IF COIN HAS ALERTS -->
@@ -61,7 +64,7 @@
             </div>
 
 
-            <div class="row flex flex-wrap pt-5 alerts">
+            <div class="row flex flex-wrap pt-5 alerts" v-if="userIsLogged">
                 <div class="col-12 w-full">
                     
                     <h2 class='section-title flex w-full inline-flex justify-between'>
@@ -97,6 +100,7 @@ import CoinPriceAlertTable from '@/components/includes/CoinPriceAlertTable'
 import SingleAside from '@/components/includes/SingleAside'
 import IconStarFull from '@/components/includes/icons/IconStarFull'
 import IconStarEmpty from '@/components/includes/icons/IconStarEmpty'
+import IconChevron from '@/components/includes/icons/IconChevron'
 
 export default {
     components : {
@@ -106,7 +110,8 @@ export default {
         CoinPriceAlertTable,
         SingleAside,
         IconStarFull,
-        IconStarEmpty
+        IconStarEmpty,
+        IconChevron
     },
 
     data(){
@@ -114,7 +119,6 @@ export default {
             coin : null,
             chartData : {},
             selectedTimeRange : '24h',
-            // usersCoinPriceAlerts : [],
             showCreateNewCoinPriceAlertWindow : false
         }
     },
@@ -131,11 +135,14 @@ export default {
         },
 
         usersCoinPriceAlerts(){
-            return this.$store.getters['coins/alertsForCoinWithId'](this.$route.params.id)
+            return this.$store.getters['alerts/alertsForCoinWithId'](this.$route.params.id)
         },
         hasAlerts(){
-            let idsOfCoinsWithAlerts = this.$store.getters['coins/idsOfCoinsWithAlerts']
+            let idsOfCoinsWithAlerts = this.$store.getters['alerts/idsOfCoinsWithAlerts']
             return idsOfCoinsWithAlerts.includes(this.$route.params.id)
+        },
+        userIsLogged(){
+            return this.$store.getters['auth/userIsLogged']
         }
     },
 

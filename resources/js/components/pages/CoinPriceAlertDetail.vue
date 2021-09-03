@@ -69,7 +69,7 @@ export default {
 
     computed : {
         coinPriceAlert(){
-            return this.$store.getters['coins/getTheAlert'](this.$route.params.id, this.$route.params.alertId)
+            return this.$store.getters['alerts/getTheAlert'](this.$route.params.id, this.$route.params.alertId)
         },
         coin(){
             return this.$store.getters['coins/getTheCoin'](this.$route.params.id)
@@ -82,7 +82,7 @@ export default {
     methods : {
             async deleteAlert(){
             if(!confirm("Are you sure that you want to delete this alert?")) return;
-                 await this.$store.dispatch('coins/deleteAlert', {
+                 await this.$store.dispatch('alerts/deleteAlert', {
                  id : this.coinPriceAlert.id,
                  coinId : this.$route.params.id
             })

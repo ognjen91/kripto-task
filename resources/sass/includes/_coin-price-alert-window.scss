@@ -1,0 +1,85 @@
+.alert-window-wrap .alert-window{
+    padding-left: 100px;
+    padding-right: 100px;
+}
+.alert-window-wrap .floating-window-content{
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    padding-bottom: 24px;
+    margin-bottom: 24px;
+}
+
+.alert-window-wrap hr{
+    display: none;
+}
+.title-holder{
+    display: none !important;
+}
+
+
+.alert-window-wrap
+.header{
+    font-size: .875rem;
+    & svg{
+        width: 80px;
+        height: 80px;
+        margin-bottom: 24px;
+    }
+}
+
+.alert-window-wrap
+.content
+.notif-text{
+    font-size: 2rem;
+    border-bottom: 1px solid $lightGray;
+    padding-bottom: 24px;
+}
+
+.alert-window-wrap
+.content
+.coin-data{
+    
+    padding: 24px 0 40px;
+    
+    & img {
+        width: 18px;
+    }
+    
+    & .data-holder{
+        width: calc(100% - 18px);
+        padding-left: 22px;
+    }
+    
+    & .name, & .price{
+        font-size: 1rem;
+        margin-bottom: 4px;
+    }
+    
+    & .symbol{
+        font-size: .875rem;
+    }
+    
+    & .date{
+        font-size: .75rem;
+    }
+}
+.alert-window-wrap
+.buttons{
+    margin-bottom: 30px;
+    
+    & button{
+        width: 48%;
+        font-size: .875rem;
+        padding: 12px 62px;
+        border-radius: 4px;
+    }
+} 
+
+.alert-window-wrap
+.edit{
+    & svg{
+        width: 12px;
+        height: 12px;
+        margin-right: 10px;
+    }
+}

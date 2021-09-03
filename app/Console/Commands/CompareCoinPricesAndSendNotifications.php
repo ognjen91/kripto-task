@@ -48,24 +48,23 @@ class CompareCoinPricesAndSendNotifications extends Command
         // IDEA: Iterate through array of unique ids and compare last two records
         // if the price has change, send notifications via websocket
         // at the end, delete previous reason for the reason of optimization
-
-        // But first, JUST IN CASE!!!
-        // if there is more than 2 records, delete all but the last two
-        if (count($coinRecords) > 2) {
-            $records = array_values($coinRecords); //as we have assoc array and we can't use $coinRecords[0] & $coinRecords[1]
-            for($i=0; $i<count($records - 1); $i++){
-                $records[$i]->delete();
-            }
-        }
-
         $uniqueCoins->each(function($coinId) use ($allCoins){
             $coinRecords = $allCoins->where('coin_id', $coinId)->all(); //get all the records with that exact id
+            // But first, JUST IN CASE!!!
+            // if there is more than 2 records, delete all but the last two
+            if (count($coinRecords) > 2) {
+                $records = array_values($coinRecords); //as we have assoc array and we can't use $coinRecords[0] & $coinRecords[1]
+                for($i=0; $i<count($records - 1); $i++){
+                    $records[$i]->delete();
+                }
+            }
             // now, if there are two records, compare prices
             if(count($coinRecords) == 2){
                 $records = array_values($coinRecords); //as we have assoc array and we can't use $coinRecords[0] & $coinRecords[1]
                 $previousRecord = $records[0];
                 $currentRecord = $records[1];
                 if($previousRecord->price !== $currentRecord->price){
+                    // if price is changed, broadcast on channel
                     broadcast(new CoinPriceChanged($previousRecord, $currentRecord));
                 } 
                 //finaly, delete previous record

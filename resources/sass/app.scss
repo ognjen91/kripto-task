@@ -1,6 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "toastr";
+
 
 html{
     *{
@@ -23,6 +25,7 @@ html{
 @import 'pages/single';
 @import 'pages/createNewCoinPriceAlert';
 @import 'pages/coinPriceAlertDetails';
+@import 'includes/coin-price-alert-window';
 
 .apexcharts-menu-icon{
     display: none !important;

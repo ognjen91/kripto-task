@@ -1,4 +1,17 @@
 .single
+.back-to-assets{
+    margin-bottom: 36px;
+    font-size: .875rem;
+
+    & svg{
+        width: 15px;
+        height: 15px;
+        transform: rotate(90deg);
+        fill: $darkBlue;
+    }
+}
+
+.single
 .header{
     margin-bottom: 24px;
 

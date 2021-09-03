@@ -4,7 +4,6 @@
          height="350" 
          :options="chartOptions" 
          :series="series"
-         v-if="this.series[0].data.length"
          ></apexchart>
 </template>
 <script>
@@ -129,10 +128,11 @@ export default {
     
             this.chartData = chartData.data.prices
 
-            // if only last hour is selected, filter data with timestamp from last hour only
+            // // if only last hour is selected, filter data with timestamp from last hour only
             let dataForMapping = this.selectedTimeRange !== '1h'? this.chartData : this.chartData.filter(theData => theData[0] / 1000 >= this.currentTimestamp - 3600)
 
             this.chartOptions.labels = dataForMapping.map(theData => moment.unix(theData[0] / 1000).format(this.timeRangeData[this.selectedTimeRange].timeFormat))
+            console.log(dataForMapping)
             this.series[0].data = dataForMapping.map(theData => theData[1])
 
 
@@ -140,13 +140,12 @@ export default {
             this.chartOptions.stroke.width = this.timeRangeData[this.selectedTimeRange].strokeWidth
             this.chartOptions.labels.rotate = this.timeRangeData[this.selectedTimeRange].labelRotate
 
-            console.log(this.chartOptions.labels, this.series[0].data)
-            
         }
     },
 
     watch : {
         timeRange(newVal){
+            console.log(newVal)
             this.selectedTimeRange = newVal //watch for the prop value and change the param if needed
             this.getChartDataFromApi()
         }

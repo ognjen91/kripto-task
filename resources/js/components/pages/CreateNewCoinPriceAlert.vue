@@ -102,7 +102,7 @@ export default {
             this.percentageRange = val
         },
         async submit(){
-            await this.$store.dispatch('coins/addNewAlert', {
+            await this.$store.dispatch('alerts/addNewAlert', {
                 coinId : this.selectedCoin.id,
                 priceOnSetDate : this.selectedCoin.current_price,
                 targetPrice : this.targetPrice,

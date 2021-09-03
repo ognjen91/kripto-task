@@ -16,7 +16,7 @@
                         <th class=' change24 flex h-full items-center' @click='orderBy24hChange'><IconArrow :class="{'asc' : order =='DESC'}" /> Change 24h</th>
                         <th>Market cap</th>
                         <th>Volume 24h</th>
-                        <th>Price graph 7d</th>
+                        <th class='pr-4'>Price graph 7d</th>
                     </tr>
                 </thead>
                 <tbody>

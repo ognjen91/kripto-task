@@ -3,9 +3,9 @@
         <div class="floating-window bg-white flex flex-col relative" :class="windowClasses">
                 
                 <!-- CLOSE BTN -->
-                <router-link :to="closeLink" class='absolute top-0 right-3 close'>
+                <div class='absolute top-0 right-3 close cursor-pointer' @click='close'>
                     <IconTimes />
-                </router-link>
+                </div>
 
                 <div class="w-full title-holder">
                    <p class='w-full text-center font-medium'><slot name="title"></slot></p>
@@ -46,6 +46,22 @@ export default {
                         Type : String,
                         required : false,
                         default : "/"
+                },
+                emitCloseEventOnCloseIconClick : {
+                        Type : Boolean,
+                        required : false,
+                        default : false
+                }
+        },
+
+        methods : {
+                close(){
+                     if(!this.emitCloseEventOnCloseIconClick){
+                             this.$router.push(this.closeLink)
+                             return
+                     }   
+
+                     this.$emit('close')
                 }
         }
 }

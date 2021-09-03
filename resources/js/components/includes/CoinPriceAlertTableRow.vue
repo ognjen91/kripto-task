@@ -41,7 +41,7 @@ export default {
     methods : {
         deleteAlert(){
             if(!confirm("Are you sure that you want to delete this alert?")) return;
-            this.$store.dispatch('coins/deleteAlert', {
+            this.$store.dispatch('alerts/deleteAlert', {
                 id : this.coinPriceAlert.id,
                 coinId : this.coinPriceAlert.coinId
             })
