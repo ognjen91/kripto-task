@@ -21552,6 +21552,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     IconLogo: _components_includes_icons_IconLogo__WEBPACK_IMPORTED_MODULE_0__.default
+  },
+  computed: {
+    userIsLogged: function userIsLogged() {
+      return this.$store.getters['auth/userIsLogged'];
+    }
   }
 });
 
@@ -23253,8 +23258,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "flex justify-start items-center bg-white"
+  "class": "flex justify-between items-center bg-white"
 };
+var _hoisted_2 = {
+  key: 0,
+  "class": "links text-blue"
+};
+
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  href: "/login",
+  "class": "mr-2"
+}, "Login", -1
+/* HOISTED */
+);
+
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  href: "/register"
+}, "Register", -1
+/* HOISTED */
+);
+
+var _hoisted_5 = [_hoisted_3, _hoisted_4];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_IconLogo = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("IconLogo");
 
@@ -23273,7 +23297,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
     /* STABLE */
 
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <router-link :to=\"{name : 'single-currency', params : {id : 'btc'}}\">Single</router-link> ")]);
+  }), !$options.userIsLogged ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_2, _hoisted_5)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
 }
 
 /***/ }),
