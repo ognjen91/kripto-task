@@ -39,7 +39,7 @@
 
         <!-- ACTION BUTTONS -->
         <div class="buttons w-full flex justify-between">
-            <button class='bg-blue-light text-blue'>Dissmis</button>
+            <button class='bg-blue-light text-blue' @click="emitClose">Dissmis</button>
             <button class='bg-blue text-white'>Buy &amp; Sell</button>
         </div>
 
