@@ -22779,7 +22779,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
       var coinsSortCopy = _toConsumableArray(coins);
 
-      return this.order == 'DESC' ? coins.sort(function (a, b) {
+      return this.order == 'DESC' ? coinsSortCopy.sort(function (a, b) {
         return +a.price_change_percentage_24h > +b.price_change_percentage_24h ? 1 : -1;
       }) : coinsSortCopy.sort(function (a, b) {
         return +a.price_change_percentage_24h < +b.price_change_percentage_24h ? 1 : -1;
@@ -24997,7 +24997,7 @@ var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 /* HOISTED */
 );
 
-var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Change 24h");
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Change 24h ");
 
 var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Market cap", -1
 /* HOISTED */
@@ -25019,22 +25019,23 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_IndexTableRow = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("IndexTableRow");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" INDEX TABLE "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [$options.coins.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("table", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
-    "class": "text-left pl-5",
+    "class": "text-left pl-5 cursor-pointer",
     onClick: _cache[0] || (_cache[0] = function ($event) {
       return $data.orderByPriceChangePercentage24h = false;
     })
   }, "Currency"), _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
-    "class": " change24 flex h-full items-center",
+    "class": " change24 flex h-full items-center justify-end cursor-pointer",
     onClick: _cache[1] || (_cache[1] = function () {
       return $options.orderBy24hChange && $options.orderBy24hChange.apply($options, arguments);
     })
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_IconArrow, {
+  }, [$data.orderByPriceChangePercentage24h ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_IconArrow, {
+    key: 0,
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)({
       'asc': $data.order == 'DESC'
     })
   }, null, 8
   /* PROPS */
-  , ["class"]), _hoisted_8]), _hoisted_9, _hoisted_10, _hoisted_11])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.coins, function (coin, i) {
+  , ["class"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_8]), _hoisted_9, _hoisted_10, _hoisted_11])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.coins, function (coin, i) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_IndexTableRow, {
       key: 'coin-' + i,
       coin: coin
